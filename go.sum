@@ -19,8 +19,8 @@ github.com/modelcontextprotocol/go-sdk v1.7.0 h1:yqjY2dsbKAC0LSuWZVBMrHgiG8ukXv6
 github.com/modelcontextprotocol/go-sdk v1.7.0/go.mod h1:dL7u98E/zjJTGzEq+j30jQ8K2k1mb6LeAH4inEcSGts=
 github.com/pb33f/ordered-map/v2 v2.3.1 h1:5319HDO0aw4DA4gzi+zv4FXU9UlSs3xGZ40wcP1nBjY=
 github.com/pb33f/ordered-map/v2 v2.3.1/go.mod h1:qxFQgd0PkVUtOMCkTapqotNgzRhMPL7VvaHKbd1HnmQ=
-github.com/plexusone/structured-evaluation v0.13.0 h1:/veXuje2D1PgkQQfaeUtAKeMHA6LBdnUd6JV3cwaLBs=
-github.com/plexusone/structured-evaluation v0.13.0/go.mod h1:mwlSwQfhy7wn4MJjLshzrkGCB0BNFkR/6nTro+CFIYE=
+github.com/plexusone/structured-evaluation v0.14.0 h1:gACNOB//bGD78F8WQlUhCtfBNY4FcRPxcLsbEWGzBc0=
+github.com/plexusone/structured-evaluation v0.14.0/go.mod h1:C7/anlUnYBxXMGRggHD7f2eQ+6ejXvXEIsCadG/D1kg=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
