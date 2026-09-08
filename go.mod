@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/invopop/jsonschema v0.14.0
 	github.com/modelcontextprotocol/go-sdk v1.7.0
-	github.com/plexusone/structured-evaluation v0.13.0
+	github.com/plexusone/structured-evaluation v0.14.0
 	github.com/spf13/cobra v1.10.2
 	gopkg.in/yaml.v3 v3.0.1
 )
