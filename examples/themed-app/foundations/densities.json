@@ -1,0 +1,12 @@
+[
+  {
+    "id": "comfortable",
+    "scale": 1.0,
+    "description": "Default spacing"
+  },
+  {
+    "id": "compact",
+    "scale": 0.75,
+    "description": "Tighter spacing for dense data views"
+  }
+]

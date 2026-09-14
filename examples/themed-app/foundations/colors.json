@@ -47,7 +47,11 @@
   {
     "id": "text-primary",
     "value": "#F1F5F9",
-    "description": "Primary text color (dark mode)"
+    "description": "Primary text color (dark mode)",
+    "modes": {
+      "light": "#0F172A",
+      "dark": "#F1F5F9"
+    }
   },
   {
     "id": "text-muted",
@@ -57,12 +61,20 @@
   {
     "id": "surface-dark",
     "value": "#0A0E1A",
-    "description": "Dark mode surface background"
+    "description": "Dark mode surface background",
+    "modes": {
+      "light": "#FFFFFF",
+      "dark": "#0A0E1A"
+    }
   },
   {
     "id": "border-default",
     "value": "#334155",
-    "description": "Default border color"
+    "description": "Default border color",
+    "modes": {
+      "light": "#CBD5E1",
+      "dark": "#334155"
+    }
   },
   {
     "id": "focus-ring",

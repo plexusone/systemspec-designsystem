@@ -4,10 +4,29 @@
   "repository": "https://github.com/plexusone/systemspec-designsystem",
   "versioning": "semver",
   "commitConvention": "conventional",
-  "maintainers": ["plexusone"],
+  "maintainers": [
+    "plexusone"
+  ],
   "unreleased": {
-    "highlights": [],
-    "added": [],
+    "highlights": [
+      {
+        "description": "First-class discrete modes and density (issue #9): documents declare their modes, color tokens carry generalized mode→value maps (light/dark fields remain as sugar), and foundations gain density variants with spacing multipliers and overrides"
+      }
+    ],
+    "added": [
+      {
+        "description": "DesignSystem.modes declaration and ColorToken.modes / ThemeToken.defaults mode→value maps with EffectiveModes/EffectiveDefaults sugar folding; Foundations.densities with scale and per-token spacingOverrides; ThemeToken.densitySensitive; themeMode accepts any declared mode"
+      },
+      {
+        "description": "mode-completeness spec lint rule: mode-aware tokens must cover every declared mode, undeclared mode keys are flagged, and documents using modes without declaring them get an advisory"
+      },
+      {
+        "description": "CSS generation emits [data-mode] override blocks and a --density scale property with per-density [data-density] blocks across tailwind4 and css-vars; scss gains per-mode and density variables; mkdocs-material picks dark-mode token values where defined"
+      },
+      {
+        "description": "Theme bindings resolve per-mode values across explicit, semantic, and inherit strategies; W3C export carries the full modes map and a density group; LLM context gains a Modes column and Densities section"
+      }
+    ],
     "changed": [],
     "fixed": [],
     "documentation": [],
@@ -18,254 +37,691 @@
       "version": "v0.6.0",
       "date": "2026-09-14",
       "highlights": [
-        { "description": "Module renamed to github.com/plexusone/systemspec-designsystem as part of the PlexusOne systemspec-{domain} family consolidation (breaking)" },
-        { "description": "New `ariaPattern` field on `ComponentA11y` for referencing WAI-ARIA Authoring Practices patterns" }
+        {
+          "description": "Module renamed to github.com/plexusone/systemspec-designsystem as part of the PlexusOne systemspec-{domain} family consolidation (breaking)"
+        },
+        {
+          "description": "New `ariaPattern` field on `ComponentA11y` for referencing WAI-ARIA Authoring Practices patterns"
+        }
       ],
       "added": [
-        { "description": "`ariaPattern` field on `ComponentA11y`, referencing the WAI-ARIA Authoring Practices pattern name (e.g. dialog, tabs, combobox) so components can point at the canonical APG pattern docs instead of just an ARIA role", "commit": "7e6eb85" }
+        {
+          "description": "`ariaPattern` field on `ComponentA11y`, referencing the WAI-ARIA Authoring Practices pattern name (e.g. dialog, tabs, combobox) so components can point at the canonical APG pattern docs instead of just an ARIA role",
+          "commit": "7e6eb85"
+        }
       ],
       "changed": [
-        { "description": "Renamed Go module from github.com/plexusone/design-system-spec to github.com/plexusone/systemspec-designsystem; updated all import paths, the UI package name, and schema $id references", "commit": "9c9e243" },
-        { "description": "Updated README, CLAUDE.md, PRD, TASKS, MkDocs site, and guides for the systemspec-designsystem name and the \"SystemSpec: Design System\" display name", "commit": "cc1539e" }
+        {
+          "description": "Renamed Go module from github.com/plexusone/design-system-spec to github.com/plexusone/systemspec-designsystem; updated all import paths, the UI package name, and schema $id references",
+          "commit": "9c9e243"
+        },
+        {
+          "description": "Updated README, CLAUDE.md, PRD, TASKS, MkDocs site, and guides for the systemspec-designsystem name and the \"SystemSpec: Design System\" display name",
+          "commit": "cc1539e"
+        }
       ],
       "documentation": [
-        { "description": "Added spec and review for a `dss generate css` command proposal (CSS/Tailwind output from design-system.json)", "commit": "ab57e88" }
+        {
+          "description": "Added spec and review for a `dss generate css` command proposal (CSS/Tailwind output from design-system.json)",
+          "commit": "ab57e88"
+        }
       ],
       "build": [
-        { "description": "Updated go.mod dependencies, including structured-evaluation and modelcontextprotocol/go-sdk", "commit": "b6c59c8" }
+        {
+          "description": "Updated go.mod dependencies, including structured-evaluation and modelcontextprotocol/go-sdk",
+          "commit": "b6c59c8"
+        }
       ]
     },
     {
       "version": "v0.5.0",
       "date": "2026-07-13",
       "highlights": [
-        { "description": "MCP server (`dss-mcp`) exposing 37 tools for AI assistant integration" },
-        { "description": "Visual regression testing with w3pilot integration and ImageMagick comparison" },
-        { "description": "Evaluation system with rubric-based scoring via structured-evaluation" },
-        { "description": "HTML documentation generator with Material Web live component demos" },
-        { "description": "Accessibility integration tools for agent-a11y compatibility" },
-        { "description": "Compliance and release gate workflow with fix-validate loops" }
+        {
+          "description": "MCP server (`dss-mcp`) exposing 37 tools for AI assistant integration"
+        },
+        {
+          "description": "Visual regression testing with w3pilot integration and ImageMagick comparison"
+        },
+        {
+          "description": "Evaluation system with rubric-based scoring via structured-evaluation"
+        },
+        {
+          "description": "HTML documentation generator with Material Web live component demos"
+        },
+        {
+          "description": "Accessibility integration tools for agent-a11y compatibility"
+        },
+        {
+          "description": "Compliance and release gate workflow with fix-validate loops"
+        }
       ],
       "added": [
-        { "description": "`dss-mcp` MCP server with 37 tools for spec reading, guidance, validation, fixing, and compliance", "commit": "df235ca" },
-        { "description": "`Service` type wrapping `DesignSystem` for unified CLI/MCP/SDK operations", "commit": "c4a54a6" },
-        { "description": "`ValidateFile()` and `ValidateDirectory()` methods with 7 validation rules", "commit": "8fb5996" },
-        { "description": "`LoadDesignSystemFromFS()` for loading from `embed.FS` and `fs.FS` interfaces", "commit": "7e56e26" },
-        { "description": "`FixFile()`, `SuggestFixes()`, `FixDirectory()` methods for auto-fixing violations", "commit": "0932eda" },
-        { "description": "Fix tools: `fix_file`, `suggest_fixes`, `fix_colors`, `fix_spacing`, `fix_accessibility`, `fix_directory`", "commit": "df235ca" },
-        { "description": "Spec lint with 13 rules for completeness verification", "commit": "028ec20" },
-        { "description": "MCP lint tools: `lint_spec`, `list_lint_rules`, `check_agent_readiness`", "commit": "13a1ae5" },
-        { "description": "Validators section for external validation delegation (WCAG, API style)", "commit": "d2ace87" },
-        { "description": "MCP validator tools: `list_validators`, `get_validator`, `get_validation_requirements`, `get_validator_invocation`", "commit": "1d02ead" },
-        { "description": "Compliance reporting with `ComplianceReport`, `ReleaseGate`, `ComplianceCertificate` types", "commit": "8e7c5f0" },
-        { "description": "MCP compliance tools: `generate_compliance_report`, `check_release_gate`, `run_fix_loop`, `fix_and_verify`, `get_compliance_certificate`", "commit": "ac1f375" },
-        { "description": "Accessibility integration phases 1-4: requirements, anti-patterns, contrast, fix context", "commit": "64e6b0f" },
-        { "description": "MCP accessibility tools: `get_accessibility_requirements`, `get_a11y_anti_patterns`, `suggest_contrast_token`, `get_component_fix_context`", "commit": "64e6b0f" },
-        { "description": "Visual regression testing package (`sdk/go/visual/`) with w3pilot MCP client", "commit": "d752bce" },
-        { "description": "Visual test types, loader, baseline manager, comparator, executor, and service", "commit": "9f3f161" },
-        { "description": "`dss visual` CLI commands: test, baseline generate/update/list/prune", "commit": "cfce58f" },
-        { "description": "Evaluation system with rubric-based scoring using structured-evaluation", "commit": "74ca38c" },
-        { "description": "`dss eval` and `dss render` CLI commands", "commit": "f889b04" },
-        { "description": "HTML documentation generator with embedded templates", "commit": "6aa068a" },
-        { "description": "Material Web CDN integration for live component demos", "commit": "9a5992b" },
-        { "description": "MkDocs support for all 9 DSS canonical layers", "commit": "1449f6d" },
-        { "description": "PlexusOne theme integration for HTML sub-site", "commit": "83536aa" },
-        { "description": "Design compliance and fixer agent specifications", "commit": "ba0ea0c" },
-        { "description": "`dss lint-spec` command for spec completeness checking", "commit": "9f6bd89" }
+        {
+          "description": "`dss-mcp` MCP server with 37 tools for spec reading, guidance, validation, fixing, and compliance",
+          "commit": "df235ca"
+        },
+        {
+          "description": "`Service` type wrapping `DesignSystem` for unified CLI/MCP/SDK operations",
+          "commit": "c4a54a6"
+        },
+        {
+          "description": "`ValidateFile()` and `ValidateDirectory()` methods with 7 validation rules",
+          "commit": "8fb5996"
+        },
+        {
+          "description": "`LoadDesignSystemFromFS()` for loading from `embed.FS` and `fs.FS` interfaces",
+          "commit": "7e56e26"
+        },
+        {
+          "description": "`FixFile()`, `SuggestFixes()`, `FixDirectory()` methods for auto-fixing violations",
+          "commit": "0932eda"
+        },
+        {
+          "description": "Fix tools: `fix_file`, `suggest_fixes`, `fix_colors`, `fix_spacing`, `fix_accessibility`, `fix_directory`",
+          "commit": "df235ca"
+        },
+        {
+          "description": "Spec lint with 13 rules for completeness verification",
+          "commit": "028ec20"
+        },
+        {
+          "description": "MCP lint tools: `lint_spec`, `list_lint_rules`, `check_agent_readiness`",
+          "commit": "13a1ae5"
+        },
+        {
+          "description": "Validators section for external validation delegation (WCAG, API style)",
+          "commit": "d2ace87"
+        },
+        {
+          "description": "MCP validator tools: `list_validators`, `get_validator`, `get_validation_requirements`, `get_validator_invocation`",
+          "commit": "1d02ead"
+        },
+        {
+          "description": "Compliance reporting with `ComplianceReport`, `ReleaseGate`, `ComplianceCertificate` types",
+          "commit": "8e7c5f0"
+        },
+        {
+          "description": "MCP compliance tools: `generate_compliance_report`, `check_release_gate`, `run_fix_loop`, `fix_and_verify`, `get_compliance_certificate`",
+          "commit": "ac1f375"
+        },
+        {
+          "description": "Accessibility integration phases 1-4: requirements, anti-patterns, contrast, fix context",
+          "commit": "64e6b0f"
+        },
+        {
+          "description": "MCP accessibility tools: `get_accessibility_requirements`, `get_a11y_anti_patterns`, `suggest_contrast_token`, `get_component_fix_context`",
+          "commit": "64e6b0f"
+        },
+        {
+          "description": "Visual regression testing package (`sdk/go/visual/`) with w3pilot MCP client",
+          "commit": "d752bce"
+        },
+        {
+          "description": "Visual test types, loader, baseline manager, comparator, executor, and service",
+          "commit": "9f3f161"
+        },
+        {
+          "description": "`dss visual` CLI commands: test, baseline generate/update/list/prune",
+          "commit": "cfce58f"
+        },
+        {
+          "description": "Evaluation system with rubric-based scoring using structured-evaluation",
+          "commit": "74ca38c"
+        },
+        {
+          "description": "`dss eval` and `dss render` CLI commands",
+          "commit": "f889b04"
+        },
+        {
+          "description": "HTML documentation generator with embedded templates",
+          "commit": "6aa068a"
+        },
+        {
+          "description": "Material Web CDN integration for live component demos",
+          "commit": "9a5992b"
+        },
+        {
+          "description": "MkDocs support for all 9 DSS canonical layers",
+          "commit": "1449f6d"
+        },
+        {
+          "description": "PlexusOne theme integration for HTML sub-site",
+          "commit": "83536aa"
+        },
+        {
+          "description": "Design compliance and fixer agent specifications",
+          "commit": "ba0ea0c"
+        },
+        {
+          "description": "`dss lint-spec` command for spec completeness checking",
+          "commit": "9f6bd89"
+        }
       ],
       "changed": [
-        { "description": "CLI commands (`validate`, `info`, `generate`) refactored to use service layer", "commit": "bd695ec" }
+        {
+          "description": "CLI commands (`validate`, `info`, `generate`) refactored to use service layer",
+          "commit": "bd695ec"
+        }
       ],
       "fixed": [
-        { "description": "Remove markdown attribute from HTML wrapper causing MkDocs parsing issues", "commit": "cf6f6a8" },
-        { "description": "Resolve lint issues (gofmt, gosec G101/G203, unparam) and remove unused code", "commit": "019d0b4" }
+        {
+          "description": "Remove markdown attribute from HTML wrapper causing MkDocs parsing issues",
+          "commit": "cf6f6a8"
+        },
+        {
+          "description": "Resolve lint issues (gofmt, gosec G101/G203, unparam) and remove unused code",
+          "commit": "019d0b4"
+        }
       ],
       "documentation": [
-        { "description": "MCP server documentation with all 37 tools, parameters, and example workflows", "commit": "a2c6f59" },
-        { "description": "Visual regression testing specification (PRD, TRD, PLAN, ROADMAP)", "commit": "14e4b99" },
-        { "description": "Rendering components feature documentation (PRD, TRD, PLAN, ROADMAP)", "commit": "3fba5ba" },
-        { "description": "ASDM integration and agentic delivery loop documentation", "commit": "67f5c56" },
-        { "description": "PIDL agentic workflow specification with 16 entities and 25 flows", "commit": "530b2b2" },
-        { "description": "Workflow automation analysis (71.3% automation score)", "commit": "2d470a6" },
-        { "description": "Agentic development maturity assessment (L2.8 current)", "commit": "8eee6ed" },
-        { "description": "Design systems catalog for future DSS implementations", "commit": "6bbb7bf" },
-        { "description": "Accessibility integration roadmap (phases 1-4)", "commit": "4fd764e" },
-        { "description": "Updated README with MCP server section and 37 tools", "commit": "96fb53a" },
-        { "description": "Updated CLI reference with lint-spec, visual, eval, render commands", "commit": "96fb53a" }
+        {
+          "description": "MCP server documentation with all 37 tools, parameters, and example workflows",
+          "commit": "a2c6f59"
+        },
+        {
+          "description": "Visual regression testing specification (PRD, TRD, PLAN, ROADMAP)",
+          "commit": "14e4b99"
+        },
+        {
+          "description": "Rendering components feature documentation (PRD, TRD, PLAN, ROADMAP)",
+          "commit": "3fba5ba"
+        },
+        {
+          "description": "ASDM integration and agentic delivery loop documentation",
+          "commit": "67f5c56"
+        },
+        {
+          "description": "PIDL agentic workflow specification with 16 entities and 25 flows",
+          "commit": "530b2b2"
+        },
+        {
+          "description": "Workflow automation analysis (71.3% automation score)",
+          "commit": "2d470a6"
+        },
+        {
+          "description": "Agentic development maturity assessment (L2.8 current)",
+          "commit": "8eee6ed"
+        },
+        {
+          "description": "Design systems catalog for future DSS implementations",
+          "commit": "6bbb7bf"
+        },
+        {
+          "description": "Accessibility integration roadmap (phases 1-4)",
+          "commit": "4fd764e"
+        },
+        {
+          "description": "Updated README with MCP server section and 37 tools",
+          "commit": "96fb53a"
+        },
+        {
+          "description": "Updated CLI reference with lint-spec, visual, eval, render commands",
+          "commit": "96fb53a"
+        }
       ],
       "build": [
-        { "description": "Add MCP SDK dependency (`github.com/modelcontextprotocol/go-sdk`)", "commit": "e1e3323" },
-        { "description": "Add structured-evaluation v0.9.0 dependency", "commit": "2744911" }
+        {
+          "description": "Add MCP SDK dependency (`github.com/modelcontextprotocol/go-sdk`)",
+          "commit": "e1e3323"
+        },
+        {
+          "description": "Add structured-evaluation v0.9.0 dependency",
+          "commit": "2744911"
+        }
       ]
     },
     {
       "version": "v0.4.0",
       "date": "2026-06-29",
       "highlights": [
-        { "description": "NPM package generation with framework-specific outputs (CSS, Tailwind, ShadCN, MkDocs, SCSS, JSON, W3C)" },
-        { "description": "Single-file loader support for design-system.json files" }
+        {
+          "description": "NPM package generation with framework-specific outputs (CSS, Tailwind, ShadCN, MkDocs, SCSS, JSON, W3C)"
+        },
+        {
+          "description": "Single-file loader support for design-system.json files"
+        }
       ],
       "added": [
-        { "description": "`GeneratePackage()` method for NPM package generation with 7 target formats", "commit": "31f178a" },
-        { "description": "`PackageGeneratorOptions` struct with target, scope, and name configuration", "commit": "31f178a" },
-        { "description": "`PackageTarget` constants: CSS, Tailwind, ShadCN, MkDocs Material, SCSS, JSON, W3C", "commit": "31f178a" },
-        { "description": "`--package`, `--scope`, `--name`, `--targets`, `--dry-run` CLI flags for package generation", "commit": "4ac4c0a" },
-        { "description": "Comprehensive package generation tests validating all target outputs", "commit": "00d4bb0" }
+        {
+          "description": "`GeneratePackage()` method for NPM package generation with 7 target formats",
+          "commit": "31f178a"
+        },
+        {
+          "description": "`PackageGeneratorOptions` struct with target, scope, and name configuration",
+          "commit": "31f178a"
+        },
+        {
+          "description": "`PackageTarget` constants: CSS, Tailwind, ShadCN, MkDocs Material, SCSS, JSON, W3C",
+          "commit": "31f178a"
+        },
+        {
+          "description": "`--package`, `--scope`, `--name`, `--targets`, `--dry-run` CLI flags for package generation",
+          "commit": "4ac4c0a"
+        },
+        {
+          "description": "Comprehensive package generation tests validating all target outputs",
+          "commit": "00d4bb0"
+        }
       ],
       "fixed": [
-        { "description": "Directory loader now supports `design-system.json` single-file format", "commit": "53f82fa" }
+        {
+          "description": "Directory loader now supports `design-system.json` single-file format",
+          "commit": "53f82fa"
+        }
       ],
       "documentation": [
-        { "description": "NPM package generation roadmap and usage examples", "commit": "5108c43" },
-        { "description": "Updated CLI reference with `--package` flag documentation", "commit": "9ff2193" },
-        { "description": "Updated task list tracking NPM package implementation", "commit": "9ff2193" }
+        {
+          "description": "NPM package generation roadmap and usage examples",
+          "commit": "5108c43"
+        },
+        {
+          "description": "Updated CLI reference with `--package` flag documentation",
+          "commit": "9ff2193"
+        },
+        {
+          "description": "Updated task list tracking NPM package implementation",
+          "commit": "9ff2193"
+        }
       ],
       "build": [
-        { "description": "Update Go module dependencies", "commit": "e6a5a3f" }
+        {
+          "description": "Update Go module dependencies",
+          "commit": "e6a5a3f"
+        }
       ]
     },
     {
       "version": "v0.3.0",
       "date": "2026-05-30",
       "highlights": [
-        { "description": "Theming contracts and bindings system for component library ↔ application theming" },
-        { "description": "Diagram generators (Mermaid, D2) for visualizing design system architecture" },
-        { "description": "Web component viewer (`@plexusone/dss-ui`) for interactive spec viewing" },
-        { "description": "W3C Design Tokens export for standards compliance" }
+        {
+          "description": "Theming contracts and bindings system for component library ↔ application theming"
+        },
+        {
+          "description": "Diagram generators (Mermaid, D2) for visualizing design system architecture"
+        },
+        {
+          "description": "Web component viewer (`@plexusone/dss-ui`) for interactive spec viewing"
+        },
+        {
+          "description": "W3C Design Tokens export for standards compliance"
+        }
       ],
       "added": [
-        { "description": "`ThemingContract`, `ThemeToken`, `ThemeBindings`, `TokenMapping` types for formal theming API", "commit": "e9792ef" },
-        { "description": "`ValidateContract()` and `ValidateAllContracts()` for contract validation", "commit": "26cca0c" },
-        { "description": "`GenerateBindings()` for CSS/TypeScript/SCSS theme binding output", "commit": "396b579" },
-        { "description": "`dss bind` CLI command with `--format` and `--strategy` flags", "commit": "c387722" },
-        { "description": "`dss contract show` and `dss contract validate` CLI commands", "commit": "bc1ffab" },
-        { "description": "Mermaid diagram generator with component relationships and token usage diagrams", "commit": "190af14" },
-        { "description": "D2 diagram generator with architecture and component focus views", "commit": "6fcc195" },
-        { "description": "W3C Design Tokens Community Group format export", "commit": "dfecd91" },
-        { "description": "MkDocs-compatible documentation generator", "commit": "0afdd23" },
-        { "description": "`@plexusone/dss-ui` Lit-based web component viewer package", "commit": "960a943" },
-        { "description": "`Brand` schema section for organization branding (logos, navigation, social)", "commit": "fb173f7" },
-        { "description": "`$schema` property support in design system JSON files", "commit": "af494b9" },
-        { "description": "`ComponentEvent` and `EventDetailField` types for event definitions", "commit": "7a45a6c" },
-        { "description": "`PropConstraints` type for property validation rules", "commit": "7a45a6c" },
-        { "description": "`Uses` field for component dependency declarations", "commit": "7a45a6c" },
-        { "description": "PlexusOne unified navigation and theme integration", "commit": "406f8b9" },
-        { "description": "`themed-app` example demonstrating theme bindings", "commit": "e1c90d6" }
+        {
+          "description": "`ThemingContract`, `ThemeToken`, `ThemeBindings`, `TokenMapping` types for formal theming API",
+          "commit": "e9792ef"
+        },
+        {
+          "description": "`ValidateContract()` and `ValidateAllContracts()` for contract validation",
+          "commit": "26cca0c"
+        },
+        {
+          "description": "`GenerateBindings()` for CSS/TypeScript/SCSS theme binding output",
+          "commit": "396b579"
+        },
+        {
+          "description": "`dss bind` CLI command with `--format` and `--strategy` flags",
+          "commit": "c387722"
+        },
+        {
+          "description": "`dss contract show` and `dss contract validate` CLI commands",
+          "commit": "bc1ffab"
+        },
+        {
+          "description": "Mermaid diagram generator with component relationships and token usage diagrams",
+          "commit": "190af14"
+        },
+        {
+          "description": "D2 diagram generator with architecture and component focus views",
+          "commit": "6fcc195"
+        },
+        {
+          "description": "W3C Design Tokens Community Group format export",
+          "commit": "dfecd91"
+        },
+        {
+          "description": "MkDocs-compatible documentation generator",
+          "commit": "0afdd23"
+        },
+        {
+          "description": "`@plexusone/dss-ui` Lit-based web component viewer package",
+          "commit": "960a943"
+        },
+        {
+          "description": "`Brand` schema section for organization branding (logos, navigation, social)",
+          "commit": "fb173f7"
+        },
+        {
+          "description": "`$schema` property support in design system JSON files",
+          "commit": "af494b9"
+        },
+        {
+          "description": "`ComponentEvent` and `EventDetailField` types for event definitions",
+          "commit": "7a45a6c"
+        },
+        {
+          "description": "`PropConstraints` type for property validation rules",
+          "commit": "7a45a6c"
+        },
+        {
+          "description": "`Uses` field for component dependency declarations",
+          "commit": "7a45a6c"
+        },
+        {
+          "description": "PlexusOne unified navigation and theme integration",
+          "commit": "406f8b9"
+        },
+        {
+          "description": "`themed-app` example demonstrating theme bindings",
+          "commit": "e1c90d6"
+        }
       ],
       "changed": [
-        { "description": "JSON schemas regenerated with theming, event, and constraint types", "commit": "89a33a4" },
-        { "description": "README updated with theming contracts, new CLI commands, and roadmap", "commit": "afe9e2d" },
-        { "description": "MkDocs navigation includes Theming specification and case study", "commit": "83e67c7" }
+        {
+          "description": "JSON schemas regenerated with theming, event, and constraint types",
+          "commit": "89a33a4"
+        },
+        {
+          "description": "README updated with theming contracts, new CLI commands, and roadmap",
+          "commit": "afe9e2d"
+        },
+        {
+          "description": "MkDocs navigation includes Theming specification and case study",
+          "commit": "83e67c7"
+        }
       ],
       "fixed": [
-        { "description": "Resolve golangci-lint findings (gofmt, gosec G107, unparam, dupl)", "commit": "d4ab04a" }
+        {
+          "description": "Resolve golangci-lint findings (gofmt, gosec G107, unparam, dupl)",
+          "commit": "d4ab04a"
+        }
       ],
       "documentation": [
-        { "description": "Theming specification with contract and bindings schemas", "commit": "508fcef" },
-        { "description": "Component theming case study (markdown-editor + PlexusOne)", "commit": "508fcef" },
-        { "description": "CLI reference updated with `bind` and `contract` commands", "commit": "83e67c7" },
-        { "description": "SDK reference updated with diagram generators and theming functions", "commit": "83e67c7" },
-        { "description": "CLAUDE.md project instructions for AI-assisted development", "commit": "e9970d2" }
+        {
+          "description": "Theming specification with contract and bindings schemas",
+          "commit": "508fcef"
+        },
+        {
+          "description": "Component theming case study (markdown-editor + PlexusOne)",
+          "commit": "508fcef"
+        },
+        {
+          "description": "CLI reference updated with `bind` and `contract` commands",
+          "commit": "83e67c7"
+        },
+        {
+          "description": "SDK reference updated with diagram generators and theming functions",
+          "commit": "83e67c7"
+        },
+        {
+          "description": "CLAUDE.md project instructions for AI-assisted development",
+          "commit": "e9970d2"
+        }
       ],
       "tests": [
-        { "description": "Comprehensive theming contract and bindings tests", "commit": "19bcf2b" }
+        {
+          "description": "Comprehensive theming contract and bindings tests",
+          "commit": "19bcf2b"
+        }
       ],
       "build": [
-        { "description": "Bump `github.com/invopop/jsonschema` from 0.13.0 to 0.14.0", "commit": "4bed924" }
+        {
+          "description": "Bump `github.com/invopop/jsonschema` from 0.13.0 to 0.14.0",
+          "commit": "4bed924"
+        }
       ]
     },
     {
       "version": "v0.2.0",
       "date": "2026-04-04",
       "highlights": [
-        { "description": "CLI tool (`dss`) for generating code artifacts and validating implementations" },
-        { "description": "Code generators for CSS (Tailwind v4, CSS vars, SCSS), React TypeScript types, and LLM context prompts" },
-        { "description": "Comprehensive MkDocs documentation site with specification reference" }
+        {
+          "description": "CLI tool (`dss`) for generating code artifacts and validating implementations"
+        },
+        {
+          "description": "Code generators for CSS (Tailwind v4, CSS vars, SCSS), React TypeScript types, and LLM context prompts"
+        },
+        {
+          "description": "Comprehensive MkDocs documentation site with specification reference"
+        }
       ],
       "added": [
-        { "description": "CLI tool (`cmd/dss`) with commands: `generate`, `validate`, `info`, `lint`, `coverage`", "commit": "eeefbde" },
-        { "description": "CSS generator supporting Tailwind v4 @theme, CSS custom properties, SCSS, and MkDocs Material formats", "commit": "4b7582f" },
-        { "description": "React TypeScript generator producing component interfaces with JSDoc and variant unions", "commit": "4b7582f" },
-        { "description": "LLM prompt generator creating Markdown or XML context documents for AI code generation", "commit": "4b7582f" },
-        { "description": "Design-compliance agent specification for automated UI code review", "commit": "b9d074b" },
-        { "description": "`FontFamily.Stack` field for CSS font-family fallback stacks", "commit": "fac6fdd" },
-        { "description": "`FontFamily.Weights` and `FontFamily.Source` fields for font metadata", "commit": "fac6fdd" },
-        { "description": "Loader support for `border-width.json`, `opacity.json`, and `z-index.json` foundations", "commit": "fac6fdd" },
-        { "description": "Minimal design system example in `examples/minimal-system/`", "commit": "4c705f1" }
+        {
+          "description": "CLI tool (`cmd/dss`) with commands: `generate`, `validate`, `info`, `lint`, `coverage`",
+          "commit": "eeefbde"
+        },
+        {
+          "description": "CSS generator supporting Tailwind v4 @theme, CSS custom properties, SCSS, and MkDocs Material formats",
+          "commit": "4b7582f"
+        },
+        {
+          "description": "React TypeScript generator producing component interfaces with JSDoc and variant unions",
+          "commit": "4b7582f"
+        },
+        {
+          "description": "LLM prompt generator creating Markdown or XML context documents for AI code generation",
+          "commit": "4b7582f"
+        },
+        {
+          "description": "Design-compliance agent specification for automated UI code review",
+          "commit": "b9d074b"
+        },
+        {
+          "description": "`FontFamily.Stack` field for CSS font-family fallback stacks",
+          "commit": "fac6fdd"
+        },
+        {
+          "description": "`FontFamily.Weights` and `FontFamily.Source` fields for font metadata",
+          "commit": "fac6fdd"
+        },
+        {
+          "description": "Loader support for `border-width.json`, `opacity.json`, and `z-index.json` foundations",
+          "commit": "fac6fdd"
+        },
+        {
+          "description": "Minimal design system example in `examples/minimal-system/`",
+          "commit": "4c705f1"
+        }
       ],
       "changed": [
-        { "description": "Merge nested `sdk/go` module into root module (import path unchanged)", "commit": "b3a9013" },
-        { "description": "Rewrite README focusing on AI-native development goals and effectiveness assessment", "commit": "c9f3c79" },
-        { "description": "Restructure TASKS.md around AI compliance goals with progress tracking", "commit": "c9f3c79" }
+        {
+          "description": "Merge nested `sdk/go` module into root module (import path unchanged)",
+          "commit": "b3a9013"
+        },
+        {
+          "description": "Rewrite README focusing on AI-native development goals and effectiveness assessment",
+          "commit": "c9f3c79"
+        },
+        {
+          "description": "Restructure TASKS.md around AI compliance goals with progress tracking",
+          "commit": "c9f3c79"
+        }
       ],
       "fixed": [
-        { "description": "Resolve golangci-lint findings (unused parameters, ineffectual assignments)", "commit": "43b569f" },
-        { "description": "Remove redundant newline in fmt.Println causing go vet error", "commit": "be6bb7c" }
+        {
+          "description": "Resolve golangci-lint findings (unused parameters, ineffectual assignments)",
+          "commit": "43b569f"
+        },
+        {
+          "description": "Remove redundant newline in fmt.Println causing go vet error",
+          "commit": "be6bb7c"
+        }
       ],
       "documentation": [
-        { "description": "MkDocs documentation site with Material theme (dark/light mode)", "commit": "6809451" },
-        { "description": "Getting started guide, CLI reference, and SDK documentation", "commit": "6809451" },
-        { "description": "Full specification reference for all 9 canonical layers", "commit": "6809451" },
-        { "description": "PlexusOne case study demonstrating real-world usage", "commit": "6809451" },
-        { "description": "Move release notes to `docs/releases/` for MkDocs integration", "commit": "7f534ba" }
+        {
+          "description": "MkDocs documentation site with Material theme (dark/light mode)",
+          "commit": "6809451"
+        },
+        {
+          "description": "Getting started guide, CLI reference, and SDK documentation",
+          "commit": "6809451"
+        },
+        {
+          "description": "Full specification reference for all 9 canonical layers",
+          "commit": "6809451"
+        },
+        {
+          "description": "PlexusOne case study demonstrating real-world usage",
+          "commit": "6809451"
+        },
+        {
+          "description": "Move release notes to `docs/releases/` for MkDocs integration",
+          "commit": "7f534ba"
+        }
       ],
       "tests": [
-        { "description": "Loader test validating minimal example loads correctly", "commit": "4c705f1" }
+        {
+          "description": "Loader test validating minimal example loads correctly",
+          "commit": "4c705f1"
+        }
       ],
       "build": [
-        { "description": "Add Cobra v1.10.2 dependency for CLI", "commit": "b3a9013" },
-        { "description": "Use shared GitHub Actions workflows", "commit": "9fbe6de" }
+        {
+          "description": "Add Cobra v1.10.2 dependency for CLI",
+          "commit": "b3a9013"
+        },
+        {
+          "description": "Use shared GitHub Actions workflows",
+          "commit": "9fbe6de"
+        }
       ]
     },
     {
       "version": "v0.1.1",
       "date": "2026-03-01",
       "fixed": [
-        { "description": "Resolve gosec G703 path traversal warning in schema generator", "commit": "f990758" },
-        { "description": "Upgrade to golangci-lint-action@v9 for v2 config support", "commit": "b750c39" }
+        {
+          "description": "Resolve gosec G703 path traversal warning in schema generator",
+          "commit": "f990758"
+        },
+        {
+          "description": "Upgrade to golangci-lint-action@v9 for v2 config support",
+          "commit": "b750c39"
+        }
       ],
       "build": [
-        { "description": "Add golangci-lint v2 configuration", "commit": "c702ef5" },
-        { "description": "Enable Dependabot for GitHub Actions", "commit": "f4036b1" },
-        { "description": "Bump github/codeql-action from 3 to 4", "commit": "929c245" }
+        {
+          "description": "Add golangci-lint v2 configuration",
+          "commit": "c702ef5"
+        },
+        {
+          "description": "Enable Dependabot for GitHub Actions",
+          "commit": "f4036b1"
+        },
+        {
+          "description": "Bump github/codeql-action from 3 to 4",
+          "commit": "929c245"
+        }
       ],
       "documentation": [
-        { "description": "Add README badges for Go Reference, CI, and license", "commit": "04083af" },
-        { "description": "Add MIT LICENSE file for pkg.go.dev indexing", "commit": "99c7156" }
+        {
+          "description": "Add README badges for Go Reference, CI, and license",
+          "commit": "04083af"
+        },
+        {
+          "description": "Add MIT LICENSE file for pkg.go.dev indexing",
+          "commit": "99c7156"
+        }
       ]
     },
     {
       "version": "v0.1.0",
       "date": "2026-03-01",
       "highlights": [
-        { "description": "Declarative specification framework for defining complete design systems as machine-readable, LLM-optimized code" },
-        { "description": "Go SDK with types for 9 canonical layers: Meta, Principles, Foundations, Components, Patterns, Templates, Content, Accessibility, Governance" }
+        {
+          "description": "Declarative specification framework for defining complete design systems as machine-readable, LLM-optimized code"
+        },
+        {
+          "description": "Go SDK with types for 9 canonical layers: Meta, Principles, Foundations, Components, Patterns, Templates, Content, Accessibility, Governance"
+        }
       ],
       "added": [
-        { "description": "Go SDK (`sdk/go`) as nested module with complete type system", "commit": "7b0d3a8" },
-        { "description": "`Meta` type for system metadata (name, version, maturity, maintainers)", "commit": "7b0d3a8" },
-        { "description": "`Principles` type for design philosophy and brand values", "commit": "7b0d3a8" },
-        { "description": "`Foundations` type for design tokens: colors, typography, spacing, elevation, motion, grid, breakpoints, borders, opacity, z-index", "commit": "7b0d3a8" },
-        { "description": "`Component` type with variants, states, props, slots, and constraints", "commit": "7b0d3a8" },
-        { "description": "`Pattern` type for multi-component UX solutions with layouts", "commit": "7b0d3a8" },
-        { "description": "`Template` type for page-level layouts with regions", "commit": "7b0d3a8" },
-        { "description": "`Content` type for voice, tone, terminology, and microcopy guidelines", "commit": "7b0d3a8" },
-        { "description": "`Accessibility` type for WCAG requirements, keyboard, and screen reader support", "commit": "7b0d3a8" },
-        { "description": "`Governance` type for versioning, contribution, and deprecation policies", "commit": "7b0d3a8" },
-        { "description": "`LLMContext` type for AI code generation optimization (intent, allowed/forbidden contexts, anti-patterns)", "commit": "7b0d3a8" },
-        { "description": "`LoadDesignSystem()` for loading specs from JSON/YAML files or directory structures", "commit": "7b0d3a8" },
-        { "description": "`GenerateSchema()` and layer-specific schema generation functions", "commit": "7b0d3a8" },
-        { "description": "Schema generator tool (`tools/generate`) producing JSON Schema files from Go types", "commit": "5dabd6f" },
-        { "description": "Generated JSON schemas for all layers in `schema/` directory", "commit": "1a366c8" },
-        { "description": "Makefile with targets: build, test, generate-schema, verify-schema, lint-schema", "commit": "f1d5eb0" }
+        {
+          "description": "Go SDK (`sdk/go`) as nested module with complete type system",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Meta` type for system metadata (name, version, maturity, maintainers)",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Principles` type for design philosophy and brand values",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Foundations` type for design tokens: colors, typography, spacing, elevation, motion, grid, breakpoints, borders, opacity, z-index",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Component` type with variants, states, props, slots, and constraints",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Pattern` type for multi-component UX solutions with layouts",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Template` type for page-level layouts with regions",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Content` type for voice, tone, terminology, and microcopy guidelines",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Accessibility` type for WCAG requirements, keyboard, and screen reader support",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`Governance` type for versioning, contribution, and deprecation policies",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`LLMContext` type for AI code generation optimization (intent, allowed/forbidden contexts, anti-patterns)",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`LoadDesignSystem()` for loading specs from JSON/YAML files or directory structures",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "`GenerateSchema()` and layer-specific schema generation functions",
+          "commit": "7b0d3a8"
+        },
+        {
+          "description": "Schema generator tool (`tools/generate`) producing JSON Schema files from Go types",
+          "commit": "5dabd6f"
+        },
+        {
+          "description": "Generated JSON schemas for all layers in `schema/` directory",
+          "commit": "1a366c8"
+        },
+        {
+          "description": "Makefile with targets: build, test, generate-schema, verify-schema, lint-schema",
+          "commit": "f1d5eb0"
+        }
       ],
       "documentation": [
-        { "description": "README with installation, quick start, canonical layers reference, and LLM optimization guide", "commit": "3593e6e" },
-        { "description": "Product Requirements Document (PRD.md) with problem statement, requirements, and roadmap", "commit": "3593e6e" },
-        { "description": "Implementation tasks tracking (TASKS.md) for all 5 phases", "commit": "2e6f1ec" }
+        {
+          "description": "README with installation, quick start, canonical layers reference, and LLM optimization guide",
+          "commit": "3593e6e"
+        },
+        {
+          "description": "Product Requirements Document (PRD.md) with problem statement, requirements, and roadmap",
+          "commit": "3593e6e"
+        },
+        {
+          "description": "Implementation tasks tracking (TASKS.md) for all 5 phases",
+          "commit": "2e6f1ec"
+        }
       ],
       "tests": [
-        { "description": "Unit tests for DesignSystem validation, JSON serialization, and schema generation", "commit": "4b4de11" }
+        {
+          "description": "Unit tests for DesignSystem validation, JSON serialization, and schema generation",
+          "commit": "4b4de11"
+        }
       ]
     }
   ]

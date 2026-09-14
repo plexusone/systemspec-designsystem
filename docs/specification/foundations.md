@@ -209,3 +209,47 @@ When you run `dss generate --css`, foundations are converted to CSS custom prope
   --radius-lg: 0.5rem;
 }
 ```
+
+## Modes
+
+A design system may declare discrete presentation modes at the document level:
+
+```json
+{ "modes": ["light", "dark", "high-contrast"] }
+```
+
+Color tokens provide per-mode values through a generalized `modes` map (the
+`lightModeValue`/`darkModeValue` fields remain as sugar for the `light` and
+`dark` entries; explicit map entries win):
+
+```json
+{
+  "id": "surface",
+  "value": "#0A0E1A",
+  "modes": { "light": "#FFFFFF", "dark": "#0A0E1A" }
+}
+```
+
+The `mode-completeness` lint rule (`dss lint-spec`) verifies that every
+mode-aware token covers every declared mode and that no token uses an
+undeclared mode. CSS generation emits one `[data-mode="<mode>"]` override
+block per mode; switch modes at runtime by setting that attribute.
+
+## Densities
+
+Densities define spacing variants (e.g. comfortable vs. compact):
+
+```json
+{
+  "densities": [
+    { "id": "comfortable", "scale": 1.0 },
+    { "id": "compact", "scale": 0.75, "spacingOverrides": { "4": "0.65rem" } }
+  ]
+}
+```
+
+`scale` is a spacing multiplier; `spacingOverrides` replaces specific spacing
+tokens where a linear multiplier is not enough. Generated CSS publishes a
+`--density` custom property (`1` at `:root`, the variant's scale inside each
+`[data-density="<id>"]` block) plus any spacing overrides — components
+consume it via `calc(<base> * var(--density, 1))`.

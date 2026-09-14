@@ -336,3 +336,23 @@ Without a contract, consumers must read source code to discover themeable proper
 - [Component Theming Case Study](../case-studies/component-theming.md) - Real-world example with markdown-editor and PlexusOne
 - [Foundations](foundations.md) - Defining design tokens
 - [Components](components.md) - Component specification including `llm` context
+
+## Modes and density in theming contracts
+
+`ThemeToken` supports generalized per-mode defaults alongside the
+`defaultLight`/`defaultDark` sugar fields:
+
+```json
+{
+  "id": "background",
+  "cssProperty": "--btn-background",
+  "defaults": { "light": "#ffffff", "dark": "#0A0E1A", "high-contrast": "#000000" },
+  "densitySensitive": true
+}
+```
+
+`themeBindings.themeMode` accepts any mode the document declares; binding
+resolution (explicit, semantic, and inherit strategies) resolves the active
+mode's value for referenced color tokens and defaults, preserving the
+dark-first fallback when no mode is specified. `densitySensitive` marks
+tokens whose values should scale with the active density.
