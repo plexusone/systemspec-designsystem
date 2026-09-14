@@ -34,6 +34,31 @@ type ThemeToken struct {
 
 	// DefaultDark is the default value for dark mode.
 	DefaultDark string `json:"defaultDark,omitempty"`
+
+	// Defaults generalizes per-mode defaults beyond light/dark: a map of
+	// mode ID to default value. Explicit entries win over the
+	// DefaultLight/DefaultDark sugar fields.
+	Defaults map[string]string `json:"defaults,omitempty"`
+
+	// DensitySensitive marks tokens whose value should scale with the
+	// active density (see Foundations.Densities).
+	DensitySensitive bool `json:"densitySensitive,omitempty"`
+}
+
+// EffectiveDefaults folds the DefaultLight/DefaultDark sugar fields into
+// the generalized Defaults map. Explicit Defaults entries take precedence.
+func (t ThemeToken) EffectiveDefaults() map[string]string {
+	defaults := map[string]string{}
+	if t.DefaultLight != "" {
+		defaults["light"] = t.DefaultLight
+	}
+	if t.DefaultDark != "" {
+		defaults["dark"] = t.DefaultDark
+	}
+	for mode, value := range t.Defaults {
+		defaults[mode] = value
+	}
+	return defaults
 }
 
 // ThemeBindings maps application design tokens to a component's theming contract.
@@ -45,8 +70,9 @@ type ThemeBindings struct {
 	// Can be a local file path or HTTP URL.
 	SpecURL string `json:"specUrl,omitempty" jsonschema:"format=uri"`
 
-	// ThemeMode specifies which mode these bindings apply to: "light", "dark", or empty for both.
-	ThemeMode string `json:"themeMode,omitempty" jsonschema:"enum=light,enum=dark"`
+	// ThemeMode specifies which mode these bindings apply to — any mode the
+	// design system declares (see DesignSystem.Modes), or empty for all.
+	ThemeMode string `json:"themeMode,omitempty"`
 
 	// Strategy defines how to handle unmapped tokens.
 	// - "explicit": Only use defined mappings, skip unmapped tokens

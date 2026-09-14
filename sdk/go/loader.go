@@ -63,6 +63,9 @@ func loadFromDirectoryFS(fsys fs.FS) (*DesignSystem, error) {
 	}
 
 	// Load principles
+	if err := loadLayerFS(fsys, "modes", &ds.Modes); err != nil && !isNotExist(err) {
+		return nil, err
+	}
 	if err := loadLayerFS(fsys, "principles", &ds.Principles); err != nil && !isNotExist(err) {
 		return nil, fmt.Errorf("load principles: %w", err)
 	}
@@ -169,6 +172,9 @@ func loadFoundationsFS(fsys fs.FS, f *Foundations) error {
 	if err := loadLayerFS(subFS, "opacity", &f.Opacity); err != nil && !isNotExist(err) {
 		return err
 	}
+	if err := loadLayerFS(subFS, "densities", &f.Densities); err != nil && !isNotExist(err) {
+		return err
+	}
 	if err := loadLayerFS(subFS, "z-index", &f.ZIndex); err != nil && !isNotExist(err) {
 		return err
 	}
@@ -267,6 +273,9 @@ func loadFromDirectory(dir string) (*DesignSystem, error) {
 	}
 
 	// Load principles
+	if err := loadLayer(dir, "modes", &ds.Modes); err != nil && !os.IsNotExist(err) {
+		return nil, err
+	}
 	if err := loadLayer(dir, "principles", &ds.Principles); err != nil && !os.IsNotExist(err) {
 		return nil, fmt.Errorf("load principles: %w", err)
 	}
@@ -372,6 +381,9 @@ func loadFoundations(dir string, f *Foundations) error {
 		return err
 	}
 	if err := loadLayer(foundationsDir, "opacity", &f.Opacity); err != nil && !os.IsNotExist(err) {
+		return err
+	}
+	if err := loadLayer(foundationsDir, "densities", &f.Densities); err != nil && !os.IsNotExist(err) {
 		return err
 	}
 	if err := loadLayer(foundationsDir, "z-index", &f.ZIndex); err != nil && !os.IsNotExist(err) {

@@ -11,6 +11,12 @@ type DesignSystem struct {
 	// Foundations contains design tokens (colors, typography, spacing, etc.).
 	Foundations Foundations `json:"foundations"`
 
+	// Modes declares the discrete presentation modes this design system
+	// defines (e.g. ["light", "dark", "high-contrast"]). Tokens provide
+	// per-mode values via their modes maps; the mode-completeness lint rule
+	// checks coverage against this list.
+	Modes []string `json:"modes,omitempty"`
+
 	// Components defines reusable UI elements.
 	Components []Component `json:"components,omitempty"`
 

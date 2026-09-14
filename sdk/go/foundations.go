@@ -34,6 +34,25 @@ type Foundations struct {
 
 	// ZIndex defines z-index layer tokens.
 	ZIndex []ZIndexToken `json:"zIndex,omitempty"`
+
+	// Densities defines spacing density variants (e.g. comfortable, compact).
+	Densities []DensityToken `json:"densities,omitempty"`
+}
+
+// DensityToken defines one spacing density variant.
+type DensityToken struct {
+	// ID is a unique identifier (e.g., "comfortable", "compact").
+	ID string `json:"id"`
+
+	// Scale is the spacing multiplier for this density (e.g., 1.0, 0.75).
+	Scale float64 `json:"scale"`
+
+	// Description explains when to use this density.
+	Description string `json:"description,omitempty"`
+
+	// SpacingOverrides replaces specific spacing-token values (keyed by
+	// spacing token ID) for designs where a linear multiplier is not enough.
+	SpacingOverrides map[string]string `json:"spacingOverrides,omitempty"`
 }
 
 // ColorToken represents a single color in the design system.
@@ -58,6 +77,29 @@ type ColorToken struct {
 
 	// DarkModeValue is an alternate value for dark mode.
 	DarkModeValue string `json:"darkModeValue,omitempty"`
+
+	// Modes generalizes per-mode values beyond light/dark: a map of mode ID
+	// (see DesignSystem.Modes) to color value. Explicit entries here win
+	// over the LightModeValue/DarkModeValue sugar fields.
+	Modes map[string]string `json:"modes,omitempty"`
+}
+
+// EffectiveModes folds the LightModeValue/DarkModeValue sugar fields into
+// the generalized Modes map. Explicit Modes entries take precedence. The
+// returned map is a copy; an empty result means the token has no per-mode
+// values.
+func (c ColorToken) EffectiveModes() map[string]string {
+	modes := map[string]string{}
+	if c.LightModeValue != "" {
+		modes["light"] = c.LightModeValue
+	}
+	if c.DarkModeValue != "" {
+		modes["dark"] = c.DarkModeValue
+	}
+	for mode, value := range c.Modes {
+		modes[mode] = value
+	}
+	return modes
 }
 
 // Contrast provides WCAG contrast ratio information.
