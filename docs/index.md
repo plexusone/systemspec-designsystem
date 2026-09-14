@@ -1,10 +1,10 @@
-# systemspec-designsystem
+# SystemSpec: Design System
 
 A declarative, machine-readable specification for defining complete design systems as code.
 
 ## What is DSS?
 
-systemspec-designsystem (DSS) provides a canonical framework for expressing design systems (like Material Design, Carbon, Fluent) in a structured, version-controlled, LLM-optimized format.
+SystemSpec Design System (DSS) provides a canonical framework for expressing design systems (like Material Design, Carbon, Fluent) in a structured, version-controlled, LLM-optimized format.
 
 ## Key Features
 

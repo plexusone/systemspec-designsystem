@@ -1,4 +1,4 @@
-# systemspec-designsystem: Enabling ASDM Level 6+ Delivery
+# SystemSpec: Design System: Enabling ASDM Level 6+ Delivery
 
 This document describes how systemspec-designsystem enables organizations to progress from Level 5 (Agentic Engineering) to Level 6 (Autonomous Coding & Review) and beyond in the [Autonomous Software Delivery Model (ASDM)](https://productbuildershq.github.io/frameworks/software-delivery-autonomy/).
 

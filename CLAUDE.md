@@ -1,4 +1,4 @@
-# CLAUDE.md - systemspec-designsystem
+# CLAUDE.md - SystemSpec: Design System
 
 Project-specific instructions for Claude Code.
 

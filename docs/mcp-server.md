@@ -867,7 +867,7 @@ which w3pilot
 w3pilot --version
 ```
 
-## Embedding systemspec-designsystems
+## Embedding Design System Specifications
 
 For distribution, you can create a custom MCP server binary that embeds your design system spec using Go's `embed` package. This eliminates the need for external spec files.
 

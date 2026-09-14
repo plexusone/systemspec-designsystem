@@ -152,7 +152,7 @@ platformConformance:
 
 ## Related Resources
 
-- [systemspec-designsystem Documentation](./index.md)
+- [SystemSpec: Design System Documentation](./index.md)
 - [Getting Started Guide](./getting-started.md)
 - [SDK Reference](./sdk.md)
 - [CLI Reference](./cli.md)

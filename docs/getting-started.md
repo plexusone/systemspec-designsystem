@@ -21,7 +21,7 @@ Verify installation:
 dss --version
 ```
 
-## Create a systemspec-designsystem
+## Create a Design System Specification
 
 ### 1. Create Directory Structure
 

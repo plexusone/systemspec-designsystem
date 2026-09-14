@@ -1,4 +1,4 @@
-# systemspec-designsystem Roadmap
+# SystemSpec: Design System Roadmap
 
 ## MCP Server Implementation
 
@@ -454,7 +454,7 @@ This section documents integration with agent-a11y for fully agentic accessibili
 
 ## Overview
 
-systemspec-designsystem provides the "source of truth" for accessible UI components. When agent-a11y detects accessibility issues, it can query systemspec-designsystem to:
+SystemSpec Design System provides the "source of truth" for accessible UI components. When agent-a11y detects accessibility issues, it can query systemspec-designsystem to:
 
 1. **Match components** - Identify which design system component is affected
 2. **Suggest tokens** - Recommend compliant color/spacing tokens

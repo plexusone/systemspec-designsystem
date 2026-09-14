@@ -1,4 +1,4 @@
-# systemspec-designsystem - Implementation Tasks
+# SystemSpec: Design System - Implementation Tasks
 
 ## Project Goals
 
