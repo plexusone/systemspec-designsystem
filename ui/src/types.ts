@@ -11,6 +11,7 @@ export interface DesignSystem {
   accessibility?: Accessibility;
   governance?: Governance;
   themeBindings?: ThemeBindings[];
+  modes?: string[];
 }
 
 export interface Meta {
@@ -43,6 +44,14 @@ export interface Foundations {
   borderWidth?: BorderWidthToken[];
   opacity?: OpacityToken[];
   zIndex?: ZIndexToken[];
+  densities?: DensityToken[];
+}
+
+export interface DensityToken {
+  id: string;
+  scale: number;
+  description?: string;
+  spacingOverrides?: Record<string, string>;
 }
 
 export interface ColorToken {
@@ -53,6 +62,7 @@ export interface ColorToken {
   contrast?: Contrast;
   lightModeValue?: string;
   darkModeValue?: string;
+  modes?: Record<string, string>;
 }
 
 export interface Contrast {
@@ -309,12 +319,14 @@ export interface ThemeToken {
   description?: string;
   defaultLight?: string;
   defaultDark?: string;
+  defaults?: Record<string, string>;
+  densitySensitive?: boolean;
 }
 
 export interface ThemeBindings {
   component: string;
   specUrl?: string;
-  themeMode?: 'light' | 'dark';
+  themeMode?: string;
   strategy?: 'explicit' | 'semantic' | 'inherit';
   mappings: TokenMapping[];
 }
