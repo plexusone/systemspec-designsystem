@@ -1,10 +1,10 @@
-# Design System Spec
+# systemspec-designsystem
 
 A declarative, machine-readable specification for defining complete design systems as code.
 
 ## What is DSS?
 
-Design System Spec (DSS) provides a canonical framework for expressing design systems (like Material Design, Carbon, Fluent) in a structured, version-controlled, LLM-optimized format.
+systemspec-designsystem (DSS) provides a canonical framework for expressing design systems (like Material Design, Carbon, Fluent) in a structured, version-controlled, LLM-optimized format.
 
 ## Key Features
 
@@ -26,10 +26,10 @@ Design System Spec (DSS) provides a canonical framework for expressing design sy
 
 ```bash
 # Install CLI
-go install github.com/plexusone/design-system-spec/cmd/dss@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 
 # Install Go SDK
-go get github.com/plexusone/design-system-spec/sdk/go
+go get github.com/plexusone/systemspec-designsystem/sdk/go
 ```
 
 ## Quick Example

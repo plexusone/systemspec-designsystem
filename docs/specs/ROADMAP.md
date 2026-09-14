@@ -1,4 +1,4 @@
-# Design System Spec Roadmap
+# systemspec-designsystem Roadmap
 
 ## MCP Server Implementation
 
@@ -130,7 +130,7 @@ dss-mcp --spec ./design-system/ --browser
 
 **Status: Complete** - Implemented in `sdk/go/gen_package.go` and `cmd/dss/cmd/generate.go`
 
-This section documents the NPM package generation feature for design-system-spec.
+This section documents the NPM package generation feature for systemspec-designsystem.
 
 ## Overview
 
@@ -248,7 +248,7 @@ dist/
     "url": "https://github.com/plexusone/plexusone-design-system"
   },
   "license": "MIT",
-  "generatedBy": "design-system-spec"
+  "generatedBy": "systemspec-designsystem"
 }
 ```
 
@@ -454,7 +454,7 @@ This section documents integration with agent-a11y for fully agentic accessibili
 
 ## Overview
 
-design-system-spec provides the "source of truth" for accessible UI components. When agent-a11y detects accessibility issues, it can query design-system-spec to:
+systemspec-designsystem provides the "source of truth" for accessible UI components. When agent-a11y detects accessibility issues, it can query systemspec-designsystem to:
 
 1. **Match components** - Identify which design system component is affected
 2. **Suggest tokens** - Recommend compliant color/spacing tokens
@@ -705,7 +705,7 @@ tokens:
 ```
 1. agent-a11y detects: "color-contrast issue on .btn-primary"
 
-2. agent-a11y queries design-system-spec:
+2. agent-a11y queries systemspec-designsystem:
    - get_component("Button") → component definition
    - get_accessibility_requirements("Button") → required props, contrast
    - suggest_contrast_token(background: "primary-500") → compliant token

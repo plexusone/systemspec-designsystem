@@ -12,7 +12,7 @@ This guide walks you through creating your first design system spec and generati
 Install the `dss` CLI tool:
 
 ```bash
-go install github.com/plexusone/design-system-spec/cmd/dss@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 ```
 
 Verify installation:
@@ -21,7 +21,7 @@ Verify installation:
 dss --version
 ```
 
-## Create a Design System Spec
+## Create a systemspec-designsystem
 
 ### 1. Create Directory Structure
 

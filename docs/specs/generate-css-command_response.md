@@ -1,6 +1,6 @@
 # Review: `dss generate css` command spec
 
-**Reviewer:** Claude Code (design-system-spec session)  
+**Reviewer:** Claude Code (systemspec-designsystem session)  
 **Date:** 2026-07-22  
 **Status:** Reviewed — ready to implement with clarifications below
 

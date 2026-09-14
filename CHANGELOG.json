@@ -1,7 +1,7 @@
 {
   "irVersion": "1.0",
-  "project": "design-system-spec",
-  "repository": "https://github.com/plexusone/design-system-spec",
+  "project": "systemspec-designsystem",
+  "repository": "https://github.com/plexusone/systemspec-designsystem",
   "versioning": "semver",
   "commitConvention": "conventional",
   "maintainers": ["plexusone"],

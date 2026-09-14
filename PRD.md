@@ -1,8 +1,8 @@
-# Design System Spec - Product Requirements Document
+# systemspec-designsystem - Product Requirements Document
 
 ## Executive Summary
 
-Design System Spec (DSS) is a canonical specification framework for defining complete design systems as machine-readable, version-controlled, LLM-optimized code. It enables organizations to express design systems like Material Design, Carbon, or Fluent in a structured format that can be validated, versioned, and consumed by both humans and AI agents.
+systemspec-designsystem (DSS) is a canonical specification framework for defining complete design systems as machine-readable, version-controlled, LLM-optimized code. It enables organizations to express design systems like Material Design, Carbon, or Fluent in a structured format that can be validated, versioned, and consumed by both humans and AI agents.
 
 ## Problem Statement
 

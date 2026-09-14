@@ -1,4 +1,4 @@
-# Design System Spec
+# systemspec-designsystem
 
 [![Go CI][go-ci-svg]][go-ci-url]
 [![Go Lint][go-lint-svg]][go-lint-url]
@@ -8,24 +8,26 @@
 [![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
 
- [go-ci-svg]: https://github.com/plexusone/design-system-spec/actions/workflows/go-ci.yaml/badge.svg?branch=main
- [go-ci-url]: https://github.com/plexusone/design-system-spec/actions/workflows/go-ci.yaml
- [go-lint-svg]: https://github.com/plexusone/design-system-spec/actions/workflows/go-lint.yaml/badge.svg?branch=main
- [go-lint-url]: https://github.com/plexusone/design-system-spec/actions/workflows/go-lint.yaml
- [go-sast-svg]: https://github.com/plexusone/design-system-spec/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
- [go-sast-url]: https://github.com/plexusone/design-system-spec/actions/workflows/go-sast-codeql.yaml
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/design-system-spec
- [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/design-system-spec
+ [go-ci-svg]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-ci.yaml/badge.svg?branch=main
+ [go-ci-url]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-ci.yaml
+ [go-lint-svg]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-lint.yaml/badge.svg?branch=main
+ [go-lint-url]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-lint.yaml
+ [go-sast-svg]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-sast-codeql.yaml/badge.svg?branch=main
+ [go-sast-url]: https://github.com/plexusone/systemspec-designsystem/actions/workflows/go-sast-codeql.yaml
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/plexusone/systemspec-designsystem
+ [docs-godoc-url]: https://pkg.go.dev/github.com/plexusone/systemspec-designsystem
  [docs-mkdoc-svg]: https://img.shields.io/badge/Go-dev%20guide-blue.svg
- [docs-mkdoc-url]: https://plexusone.dev/design-system-spec
+ [docs-mkdoc-url]: https://plexusone.dev/systemspec-designsystem
  [viz-svg]: https://img.shields.io/badge/Go-visualizaton-blue.svg
- [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=plexusone%2Fdesign-system-spec
- [loc-svg]: https://tokei.rs/b1/github/plexusone/design-system-spec
- [repo-url]: https://github.com/plexusone/design-system-spec
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=plexusone%2Fsystemspec-designsystem
+ [loc-svg]: https://tokei.rs/b1/github/plexusone/systemspec-designsystem
+ [repo-url]: https://github.com/plexusone/systemspec-designsystem
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/plexusone/design-system-spec/blob/main/LICENSE
+ [license-url]: https://github.com/plexusone/systemspec-designsystem/blob/main/LICENSE
 
 A declarative, machine-readable specification for defining design systems as code, built for AI-native development.
+
+> **Note:** This project is part of the PlexusOne `systemspec-{domain}` family of machine-readable system definitions (alongside `systemspec-apistyle`, `systemspec-crypto`, and `systemspec-deploy`). It was formerly named `design-system-spec` and was renamed in September 2026; earlier releases were published under the old module path `github.com/plexusone/design-system-spec`.
 
 ## Primary Goals
 
@@ -83,10 +85,10 @@ For visual validation, combine DSS with visual regression testing (Chromatic, Pe
 
 ```bash
 # CLI
-go install github.com/plexusone/design-system-spec/cmd/dss@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 
 # Go SDK
-go get github.com/plexusone/design-system-spec
+go get github.com/plexusone/systemspec-designsystem
 ```
 
 ## Quick Start
@@ -165,7 +167,7 @@ The `dss-mcp` command exposes your design system as an MCP (Model Context Protoc
 ### Installation
 
 ```bash
-go install github.com/plexusone/design-system-spec/cmd/dss-mcp@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss-mcp@latest
 ```
 
 ### Claude Desktop Integration
@@ -426,7 +428,7 @@ DSS defines 9 layers (most projects only need 3):
 ## Go SDK
 
 ```go
-import dss "github.com/plexusone/design-system-spec/sdk/go"
+import dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 
 ds, _ := dss.LoadDesignSystem("./my-design-system/")
 ds.Validate()
@@ -447,7 +449,7 @@ Bundle design system specs into binaries using Go's `embed` package:
 import (
     "embed"
     "io/fs"
-    dss "github.com/plexusone/design-system-spec/sdk/go"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 //go:embed spec/*
@@ -465,7 +467,7 @@ This enables single-binary distribution for MCP servers and CLI tools.
 ## Project Structure
 
 ```
-design-system-spec/
+systemspec-designsystem/
 ├── cmd/
 │   ├── dss/              # CLI tool
 │   │   └── cmd/

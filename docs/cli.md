@@ -5,7 +5,7 @@ The `dss` command-line tool generates code artifacts and validates implementatio
 ## Installation
 
 ```bash
-go install github.com/plexusone/design-system-spec/cmd/dss@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 ```
 
 ## Global Flags
@@ -779,7 +779,7 @@ jobs:
           go-version: '1.22'
 
       - name: Install dss
-        run: go install github.com/plexusone/design-system-spec/cmd/dss@latest
+        run: go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 
       - name: Validate components
         run: dss validate -d ./design-system ./src/components
@@ -814,7 +814,7 @@ The `dss-mcp` command runs an MCP (Model Context Protocol) server that exposes d
 ### Installation
 
 ```bash
-go install github.com/plexusone/design-system-spec/cmd/dss-mcp@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss-mcp@latest
 ```
 
 ### Usage

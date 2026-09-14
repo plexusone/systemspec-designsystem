@@ -1,8 +1,8 @@
-site_name: Design System Spec
+site_name: systemspec-designsystem
 site_description: A declarative, machine-readable specification for defining complete design systems as code
-site_url: https://plexusone.github.io/design-system-spec
-repo_url: https://github.com/plexusone/design-system-spec
-repo_name: plexusone/design-system-spec
+site_url: https://plexusone.github.io/systemspec-designsystem
+repo_url: https://github.com/plexusone/systemspec-designsystem
+repo_name: plexusone/systemspec-designsystem
 
 theme:
   name: material
@@ -79,4 +79,4 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/plexusone/design-system-spec
+      link: https://github.com/plexusone/systemspec-designsystem

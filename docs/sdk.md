@@ -5,7 +5,7 @@ The Go SDK provides programmatic access to DSS for loading, validating, and gene
 ## Installation
 
 ```bash
-go get github.com/plexusone/design-system-spec/sdk/go
+go get github.com/plexusone/systemspec-designsystem/sdk/go
 ```
 
 ## Quick Start
@@ -15,7 +15,7 @@ package main
 
 import (
     "fmt"
-    dss "github.com/plexusone/design-system-spec/sdk/go"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 func main() {
@@ -62,7 +62,7 @@ Load design systems from Go's `embed.FS` or any `fs.FS` interface. This enables 
 import (
     "embed"
     "io/fs"
-    dss "github.com/plexusone/design-system-spec/sdk/go"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 //go:embed spec/*
@@ -652,7 +652,7 @@ import (
     "fmt"
     "os"
 
-    dss "github.com/plexusone/design-system-spec/sdk/go"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 func main() {

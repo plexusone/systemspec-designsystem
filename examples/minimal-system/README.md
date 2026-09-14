@@ -1,6 +1,6 @@
 # Minimal Design System Example
 
-A minimal example demonstrating the Design System Spec format.
+A minimal example demonstrating the systemspec-designsystem format.
 
 ## Structure
 
@@ -23,7 +23,7 @@ package main
 
 import (
     "fmt"
-    dss "github.com/plexusone/design-system-spec/sdk/go"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 func main() {

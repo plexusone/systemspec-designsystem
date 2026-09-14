@@ -1,4 +1,4 @@
-# CLAUDE.md - Design System Spec
+# CLAUDE.md - systemspec-designsystem
 
 Project-specific instructions for Claude Code.
 
@@ -50,7 +50,7 @@ git add sdk/go/ schema/
 ## Project Architecture
 
 ```
-design-system-spec/
+systemspec-designsystem/
 ├── sdk/go/                    # Go SDK (source of truth)
 │   ├── designsystem.go        # Root DesignSystem type
 │   ├── components.go          # Component, Prop, Event types

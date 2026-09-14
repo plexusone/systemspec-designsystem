@@ -1,6 +1,6 @@
-# Design System Spec: Enabling ASDM Level 6+ Delivery
+# systemspec-designsystem: Enabling ASDM Level 6+ Delivery
 
-This document describes how design-system-spec enables organizations to progress from Level 5 (Agentic Engineering) to Level 6 (Autonomous Coding & Review) and beyond in the [Autonomous Software Delivery Model (ASDM)](https://productbuildershq.github.io/frameworks/software-delivery-autonomy/).
+This document describes how systemspec-designsystem enables organizations to progress from Level 5 (Agentic Engineering) to Level 6 (Autonomous Coding & Review) and beyond in the [Autonomous Software Delivery Model (ASDM)](https://productbuildershq.github.io/frameworks/software-delivery-autonomy/).
 
 ## ASDM Context
 
@@ -12,7 +12,7 @@ The Software Delivery Autonomy Model defines 7 levels of increasing autonomy:
 | 6 | Autonomous Coding & Review | Specification owner | Scenario-based validation required |
 | 7 | Autonomous Operations | Governor | Production telemetry validation |
 
-**The Level 5→6 transition is the hardest**: it requires replacing human code review with automated scenario-based validation. This is where design-system-spec provides critical infrastructure.
+**The Level 5→6 transition is the hardest**: it requires replacing human code review with automated scenario-based validation. This is where systemspec-designsystem provides critical infrastructure.
 
 ## The Level 5 Bottleneck
 
@@ -276,11 +276,11 @@ This enables the transition from "human reviews every PR" (Level 5) to "scenario
 
 ## Companion Projects
 
-For complete Level 6 UI validation, combine design-system-spec with:
+For complete Level 6 UI validation, combine systemspec-designsystem with:
 
 | Project | Validation Type | Specification |
 |---------|----------------|---------------|
-| **design-system-spec** | Visual regression | Design system spec |
+| **systemspec-designsystem** | Visual regression | Design system spec |
 | **[agent-a11y](https://github.com/plexusone/agent-a11y)** | Accessibility | WCAG 2.x |
 
 Both projects integrate with multi-agent-spec for GO/WARN/NO-GO decision orchestration.

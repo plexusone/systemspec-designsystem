@@ -201,8 +201,8 @@ starter/
 
 ```bash
 # Clone the repo
-git clone https://github.com/plexusone/design-system-spec.git
-cd design-system-spec/examples/starter
+git clone https://github.com/plexusone/systemspec-designsystem.git
+cd systemspec-designsystem/examples/starter
 
 # View info
 dss info

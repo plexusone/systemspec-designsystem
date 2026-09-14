@@ -1,6 +1,6 @@
 # Agentic Delivery Loop with Design-System-Spec
 
-This document describes the autonomous agent workflow for implementing UI components using design-system-spec as the validation layer.
+This document describes the autonomous agent workflow for implementing UI components using systemspec-designsystem as the validation layer.
 
 ## Overview
 
@@ -106,7 +106,7 @@ if (result.summary.failed === 0 && result.summary.errors === 0) {
 #!/usr/bin/env python3
 """
 Autonomous component implementation agent.
-Implements ASDM Level 6 workflow with design-system-spec validation.
+Implements ASDM Level 6 workflow with systemspec-designsystem validation.
 """
 
 import json
@@ -297,7 +297,7 @@ jobs:
       - name: Setup
         run: |
           npm ci
-          go install github.com/plexusone/design-system-spec/cmd/dss@latest
+          go install github.com/plexusone/systemspec-designsystem/cmd/dss@latest
 
       - name: Run Agent Loop
         env:
@@ -450,7 +450,7 @@ Start with stable, well-specified components:
 
 ## Summary
 
-The agentic delivery loop with design-system-spec enables:
+The agentic delivery loop with systemspec-designsystem enables:
 
 1. **Specification-driven generation**: Agents read specs, not source code
 2. **Visual validation**: Scenarios replace human code review

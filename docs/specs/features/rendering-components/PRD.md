@@ -104,7 +104,7 @@ Design system specifications describe components abstractly, but developers need
 
 ## Dependencies
 
-- design-system-spec SDK (Go)
+- systemspec-designsystem SDK (Go)
 - material-web (for live demos)
 - esm.run CDN
 - playground-elements (optional, for code editing)

@@ -21,7 +21,7 @@ The MCP server provides 37 tools organized into nine categories:
 
 ```bash
 # Build from source
-go install github.com/plexusone/design-system-spec/cmd/dss-mcp@latest
+go install github.com/plexusone/systemspec-designsystem/cmd/dss-mcp@latest
 
 # Or build locally
 go build -o dss-mcp ./cmd/dss-mcp
@@ -867,7 +867,7 @@ which w3pilot
 w3pilot --version
 ```
 
-## Embedding Design System Specs
+## Embedding systemspec-designsystems
 
 For distribution, you can create a custom MCP server binary that embeds your design system spec using Go's `embed` package. This eliminates the need for external spec files.
 
@@ -884,9 +884,9 @@ import (
     "os"
 
     "github.com/modelcontextprotocol/go-sdk/mcp"
-    dss "github.com/plexusone/design-system-spec/sdk/go"
-    "github.com/plexusone/design-system-spec/skills/designsystem"
-    "github.com/plexusone/design-system-spec/internal/omniskill/mcp/server"
+    dss "github.com/plexusone/systemspec-designsystem/sdk/go"
+    "github.com/plexusone/systemspec-designsystem/skills/designsystem"
+    "github.com/plexusone/systemspec-designsystem/internal/omniskill/mcp/server"
 )
 
 //go:embed spec/*
