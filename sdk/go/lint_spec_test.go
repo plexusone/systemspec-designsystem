@@ -2,6 +2,7 @@ package dss
 
 import (
 	"context"
+	"strings"
 	"testing"
 )
 
@@ -693,4 +694,68 @@ func TestLintSpec_ValidatorAllValid(t *testing.T) {
 			t.Errorf("Unexpected validator issue: %s - %s", issue.Rule, issue.Message)
 		}
 	}
+}
+
+func TestModeCompleteness(t *testing.T) {
+	ds := &DesignSystem{
+		Meta:  Meta{Name: "Test", Version: "1.0.0"},
+		Modes: []string{"light", "dark"},
+		Foundations: Foundations{
+			Colors: []ColorToken{
+				{ID: "complete", Value: "#0af", Modes: map[string]string{"light": "#0df", "dark": "#068"}},
+				{ID: "partial", Value: "#f00", DarkModeValue: "#800"},
+				{ID: "undeclared", Value: "#0f0", Modes: map[string]string{"light": "#afa", "dark": "#050", "sepia": "#dd0"}},
+				{ID: "modeless", Value: "#123"},
+			},
+		},
+	}
+	result := ds.Lint()
+
+	var partialMissing, undeclaredMode, wrongFlags int
+	for _, issue := range result.Issues {
+		if issue.Rule != "mode-completeness" {
+			continue
+		}
+		switch {
+		case containsAll(issue.Message, "'partial'", "missing declared mode 'light'"):
+			partialMissing++
+		case containsAll(issue.Message, "'undeclared'", "undeclared mode 'sepia'"):
+			undeclaredMode++
+		case containsAll(issue.Message, "'complete'") || containsAll(issue.Message, "'modeless'"):
+			wrongFlags++
+		}
+	}
+	if partialMissing != 1 || undeclaredMode != 1 || wrongFlags != 0 {
+		t.Errorf("mode-completeness issues wrong: partial=%d undeclared=%d wrongFlags=%d (%+v)",
+			partialMissing, undeclaredMode, wrongFlags, result.Issues)
+	}
+}
+
+func TestModeCompletenessUndeclaredDocument(t *testing.T) {
+	ds := &DesignSystem{
+		Meta: Meta{Name: "Test", Version: "1.0.0"},
+		Foundations: Foundations{
+			Colors: []ColorToken{{ID: "c", Value: "#000", DarkModeValue: "#111"}},
+		},
+	}
+	result := ds.Lint()
+	found := false
+	for _, issue := range result.Issues {
+		if issue.Rule == "mode-completeness" &&
+			containsAll(issue.Message, "declares no modes list") && issue.Severity == "info" {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("expected info about missing modes declaration, got %+v", result.Issues)
+	}
+}
+
+func containsAll(s string, subs ...string) bool {
+	for _, sub := range subs {
+		if !strings.Contains(s, sub) {
+			return false
+		}
+	}
+	return true
 }

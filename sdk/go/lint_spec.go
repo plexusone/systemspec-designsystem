@@ -133,6 +133,11 @@ func (l *specLinter) lint(_ context.Context) {
 		l.checkMetaRequired()
 	}
 
+	// Mode validation
+	if allRules || l.hasRule(rules, "mode-completeness") {
+		l.checkModeCompleteness()
+	}
+
 	// Component validation
 	if allRules || l.hasRule(rules, "component-has-variants") {
 		l.checkComponentVariants()
@@ -220,6 +225,7 @@ func (l *specLinter) addIssue(path, rule, message, severity string, component st
 
 func (l *specLinter) getSuggestion(rule string) string {
 	suggestions := map[string]string{
+		"mode-completeness":         "Declare the document's modes list and give every mode-aware token a value for each declared mode",
 		"meta-required":             "Add name and version to meta.json",
 		"component-has-variants":    "Define variants array with at least one variant",
 		"component-has-props":       "Define props array with component properties",
@@ -364,6 +370,61 @@ func (l *specLinter) checkTokenDescriptions() {
 				"",
 			)
 		}
+	}
+}
+
+// checkModeCompleteness verifies that per-mode token values line up with the
+// document's declared modes (DesignSystem.Modes): tokens that define some
+// mode values should cover every declared mode, mode keys should be
+// declared, and documents using modes should declare them.
+func (l *specLinter) checkModeCompleteness() {
+	declared := map[string]bool{}
+	for _, m := range l.ds.Modes {
+		declared[m] = true
+	}
+
+	anyModeUse := false
+	for i, c := range l.ds.Foundations.Colors {
+		modes := c.EffectiveModes()
+		if len(modes) == 0 {
+			continue
+		}
+		anyModeUse = true
+
+		if len(declared) > 0 {
+			for _, m := range l.ds.Modes {
+				if _, ok := modes[m]; !ok {
+					l.addIssue(
+						fmt.Sprintf("foundations.colors[%d].modes", i),
+						"mode-completeness",
+						fmt.Sprintf("Color token '%s' defines mode values but is missing declared mode '%s'", c.ID, m),
+						"warning",
+						"",
+					)
+				}
+			}
+		}
+		for m := range modes {
+			if len(declared) > 0 && !declared[m] {
+				l.addIssue(
+					fmt.Sprintf("foundations.colors[%d].modes", i),
+					"mode-completeness",
+					fmt.Sprintf("Color token '%s' defines value for undeclared mode '%s' (declare it in the document's modes list)", c.ID, m),
+					"warning",
+					"",
+				)
+			}
+		}
+	}
+
+	if anyModeUse && len(declared) == 0 {
+		l.addIssue(
+			"modes",
+			"mode-completeness",
+			"Tokens define per-mode values but the document declares no modes list",
+			"info",
+			"",
+		)
 	}
 }
 
@@ -759,6 +820,7 @@ func (l *specLinter) updateSummary() {
 func AvailableLintRules() map[string]string {
 	return map[string]string{
 		"meta-required":             "Design system must have name and version",
+		"mode-completeness":         "Mode-aware tokens must cover every declared mode",
 		"component-has-variants":    "Components should define variants",
 		"component-has-props":       "Components should define props",
 		"component-has-llm-context": "Components should have LLM context for AI generation",
