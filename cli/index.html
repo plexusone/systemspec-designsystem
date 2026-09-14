@@ -1497,6 +1497,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../releases/v0.7.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.7.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../releases/v0.6.0/" class="md-nav__link">
         
   
@@ -2421,6 +2449,7 @@
 </tr>
 </tbody>
 </table>
+<p>If the spec declares <code>modes</code> or <code>foundations.densities</code>, every format above also emits mode overrides (<code>[data-mode="dark"] { ... }</code>) and a <code>--density</code> custom property with per-density <code>[data-density="..."]</code> blocks — no extra flags required. Specs without modes or densities are unaffected. See <a href="../specification/foundations/#modes">Foundations: Modes</a> and <a href="../specification/foundations/#densities">Densities</a>.</p>
 <hr />
 <h3 id="dss-validate">dss validate<a class="headerlink" href="#dss-validate" title="Permanent link">&para;</a></h3>
 <p>Validate that component implementations comply with the design system specification.</p>
@@ -2671,6 +2700,11 @@
 <td><code>validators-configured</code></td>
 <td>Warning</td>
 <td>External validators should be configured</td>
+</tr>
+<tr>
+<td><code>mode-completeness</code></td>
+<td>Warning/Info</td>
+<td>Mode-aware color tokens should cover every declared mode; mode keys should be declared in <code>modes</code></td>
 </tr>
 <tr>
 <td><code>validator-tool-required</code></td>

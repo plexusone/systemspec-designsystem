@@ -968,6 +968,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#modes-and-density-in-theming-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modes and density in theming contracts
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1351,6 +1362,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/v0.7.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.7.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1864,6 +1903,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#modes-and-density-in-theming-contracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modes and density in theming contracts
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2366,6 +2416,21 @@
 <li><a href="../foundations/">Foundations</a> - Defining design tokens</li>
 <li><a href="../components/">Components</a> - Component specification including <code>llm</code> context</li>
 </ul>
+<h2 id="modes-and-density-in-theming-contracts">Modes and density in theming contracts<a class="headerlink" href="#modes-and-density-in-theming-contracts" title="Permanent link">&para;</a></h2>
+<p><code>ThemeToken</code> supports generalized per-mode defaults alongside the
+<code>defaultLight</code>/<code>defaultDark</code> sugar fields:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;background&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span><span class="nt">&quot;cssProperty&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;--btn-background&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">&quot;defaults&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;light&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;dark&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#0A0E1A&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;high-contrast&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;#000000&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">  </span><span class="nt">&quot;densitySensitive&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>themeBindings.themeMode</code> accepts any mode the document declares; binding
+resolution (explicit, semantic, and inherit strategies) resolves the active
+mode's value for referenced color tokens and defaults, preserving the
+dark-first fallback when no mode is specified. <code>densitySensitive</code> marks
+tokens whose values should scale with the active density.</p>
 
 
 
