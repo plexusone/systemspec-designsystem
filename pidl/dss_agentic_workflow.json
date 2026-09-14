@@ -40,7 +40,7 @@
       "id": "dss_mcp",
       "name": "DSS MCP Server",
       "type": "server",
-      "description": "Design System Spec MCP server providing 33 tools",
+      "description": "systemspec-designsystem MCP server providing 33 tools",
       "step_type": "tool"
     },
     {

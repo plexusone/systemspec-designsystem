@@ -1,151 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/agentic-maturity/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/agentic-maturity/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/cli/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/cli/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/design-systems-catalog/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/design-systems-catalog/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/examples/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/examples/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/getting-started/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/getting-started/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/mcp-server/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/mcp-server/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/sdk/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/sdk/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/case-studies/component-theming/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/case-studies/component-theming/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/case-studies/plexusone/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/case-studies/plexusone/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/pidl/AUTOMATION_ANALYSIS/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/pidl/AUTOMATION_ANALYSIS/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.1.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.1.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.1.1/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.1.1/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.2.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.2.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.3.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.3.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.4.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.4.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/releases/v0.5.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.5.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/releases/v0.6.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/accessibility/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/components/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/accessibility/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/foundations/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/components/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/meta/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/foundations/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/patterns/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/meta/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/principles/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/patterns/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specification/theming/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/principles/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/ROADMAP/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specification/theming/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/agentic-delivery/AGENT-LOOP/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/ROADMAP/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/agentic-delivery/ASDM-INTEGRATION/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/generate-css-command/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/rendering-components/PLAN/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/generate-css-command_response/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/rendering-components/PRD/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/agentic-delivery/AGENT-LOOP/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/rendering-components/ROADMAP/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/agentic-delivery/ASDM-INTEGRATION/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/rendering-components/TRD/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/rendering-components/PLAN/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/visual-regression-testing/PLAN/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/rendering-components/PRD/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/visual-regression-testing/PRD/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/rendering-components/ROADMAP/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/visual-regression-testing/ROADMAP/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/rendering-components/TRD/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/specs/features/visual-regression-testing/TRD/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/visual-regression-testing/PLAN/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
     <url>
-         <loc>https://plexusone.github.io/design-system-spec/versions/v0.1.0/</loc>
-         <lastmod>2026-07-13</lastmod>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/visual-regression-testing/PRD/</loc>
+         <lastmod>2026-09-14</lastmod>
+    </url>
+    <url>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/visual-regression-testing/ROADMAP/</loc>
+         <lastmod>2026-09-14</lastmod>
+    </url>
+    <url>
+         <loc>https://plexusone.github.io/systemspec-designsystem/specs/features/visual-regression-testing/TRD/</loc>
+         <lastmod>2026-09-14</lastmod>
+    </url>
+    <url>
+         <loc>https://plexusone.github.io/systemspec-designsystem/versions/v0.1.0/</loc>
+         <lastmod>2026-09-14</lastmod>
     </url>
 </urlset>
