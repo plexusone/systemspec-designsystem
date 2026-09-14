@@ -2,6 +2,7 @@ package dss
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -16,7 +17,11 @@ type CSSGeneratorOptions struct {
 	// IncludeComments adds usage descriptions as CSS comments
 	IncludeComments bool
 
-	// IncludeDarkMode generates dark mode variants
+	// IncludeDarkMode is deprecated and has no effect: mode-override blocks
+	// are emitted whenever the document declares modes or tokens carry
+	// per-mode values.
+	//
+	// Deprecated: mode emission is data-driven.
 	IncludeDarkMode bool
 }
 
@@ -212,6 +217,9 @@ func (ds *DesignSystem) generateTailwind4CSS(opts CSSGeneratorOptions, b *string
 	b.WriteString("  }\n")
 	b.WriteString("}\n")
 
+	ds.writeCSSModeBlocks(b, func(id string) string { return "--color-" + normalizeID(id) })
+	ds.writeCSSDensityBlocks(b, "", func(id string) string { return "--spacing-" + normalizeID(id) })
+
 	return b.String(), nil
 }
 
@@ -248,6 +256,9 @@ func (ds *DesignSystem) generateCSSVars(opts CSSGeneratorOptions, b *strings.Bui
 	}
 
 	b.WriteString("}\n")
+
+	ds.writeCSSModeBlocks(b, func(id string) string { return cssVarName("color", id, opts.Prefix) })
+	ds.writeCSSDensityBlocks(b, opts.Prefix, func(id string) string { return cssVarName("spacing", id, opts.Prefix) })
 
 	return b.String(), nil
 }
@@ -292,6 +303,23 @@ func (ds *DesignSystem) generateSCSS(opts CSSGeneratorOptions, b *strings.Builde
 		}
 	}
 
+	if modes := ds.collectModes(); len(modes) > 0 {
+		b.WriteString("\n// Modes\n")
+		for _, mode := range modes {
+			for _, c := range f.Colors {
+				if v, ok := c.EffectiveModes()[mode]; ok && v != "" {
+					b.WriteString(fmt.Sprintf("%s--%s: %s;\n", scssVarName("color", c.ID, opts.Prefix), mode, v))
+				}
+			}
+		}
+	}
+	if len(f.Densities) > 0 {
+		b.WriteString("\n// Densities\n")
+		for _, d := range f.Densities {
+			b.WriteString(fmt.Sprintf("%s: %v;\n", scssVarName("density", d.ID, opts.Prefix), d.Scale))
+		}
+	}
+
 	return b.String(), nil
 }
 
@@ -321,37 +349,38 @@ func (ds *DesignSystem) generateMkDocsMaterialCSS(opts CSSGeneratorOptions, b *s
 	var successColor, warningColor, errorColor string
 
 	for _, c := range f.Colors {
+		v := modeValue(c, "dark") // mkdocs-material output is dark-first (slate scheme)
 		switch c.ID {
 		case "cyan", "primary":
-			primaryColor = c.Value
+			primaryColor = v
 		case "cyan-light", "primary-light":
-			primaryLight = c.Value
+			primaryLight = v
 		case "cyan-dark", "primary-dark":
-			primaryDark = c.Value
+			primaryDark = v
 		case "purple", "secondary", "accent":
-			accentColor = c.Value
+			accentColor = v
 		case "purple-light", "secondary-light", "accent-light":
-			accentLight = c.Value
+			accentLight = v
 		case "background":
-			bgColor = c.Value
+			bgColor = v
 		case "background-elevated":
-			bgElevated = c.Value
+			bgElevated = v
 		case "background-subtle":
-			bgSubtle = c.Value
+			bgSubtle = v
 		case "foreground":
-			fgColor = c.Value
+			fgColor = v
 		case "foreground-muted":
-			fgMuted = c.Value
+			fgMuted = v
 		case "border":
-			borderColor = c.Value
+			borderColor = v
 		case "border-subtle":
-			borderSubtle = c.Value
+			borderSubtle = v
 		case "success":
-			successColor = c.Value
+			successColor = v
 		case "warning":
-			warningColor = c.Value
+			warningColor = v
 		case "error":
-			errorColor = c.Value
+			errorColor = v
 		}
 	}
 
@@ -701,4 +730,94 @@ func (f Foundations) isEmpty() bool {
 		len(f.BorderWidth) == 0 &&
 		len(f.Opacity) == 0 &&
 		len(f.ZIndex) == 0
+}
+
+// modeValue returns the token's value for the given mode, falling back to
+// the base value.
+func modeValue(c ColorToken, mode string) string {
+	if v := c.EffectiveModes()[mode]; v != "" {
+		return v
+	}
+	return c.Value
+}
+
+// collectModes returns the sorted union of the document's declared modes and
+// the modes present on color tokens.
+func (ds *DesignSystem) collectModes() []string {
+	set := map[string]bool{}
+	for _, m := range ds.Modes {
+		set[m] = true
+	}
+	for _, c := range ds.Foundations.Colors {
+		for m := range c.EffectiveModes() {
+			set[m] = true
+		}
+	}
+	modes := make([]string, 0, len(set))
+	for m := range set {
+		modes = append(modes, m)
+	}
+	sort.Strings(modes)
+	return modes
+}
+
+// densityVarName is the density scale custom property (--density, or
+// prefixed --<prefix>-density).
+func densityVarName(prefix string) string {
+	if prefix != "" {
+		return "--" + prefix + "-density"
+	}
+	return "--density"
+}
+
+// writeCSSModeBlocks emits one [data-mode="<m>"] override block per mode for
+// every color token carrying a value in that mode. colorVar maps a token ID
+// to its custom-property name for the active format.
+func (ds *DesignSystem) writeCSSModeBlocks(b *strings.Builder, colorVar func(id string) string) {
+	modes := ds.collectModes()
+	if len(modes) == 0 {
+		return
+	}
+	for _, mode := range modes {
+		var lines []string
+		for _, c := range ds.Foundations.Colors {
+			if v, ok := c.EffectiveModes()[mode]; ok && v != "" {
+				lines = append(lines, fmt.Sprintf("  %s: %s;\n", colorVar(c.ID), v))
+			}
+		}
+		if len(lines) == 0 {
+			continue
+		}
+		fmt.Fprintf(b, "\n[data-mode=%q] {\n", mode)
+		for _, line := range lines {
+			b.WriteString(line)
+		}
+		b.WriteString("}\n")
+	}
+}
+
+// writeCSSDensityBlocks emits the base density scale property and one
+// [data-density="<id>"] block per density variant (scale plus any spacing
+// overrides). spacingVar maps a spacing token ID to its custom-property
+// name for the active format.
+func (ds *DesignSystem) writeCSSDensityBlocks(b *strings.Builder, prefix string, spacingVar func(id string) string) {
+	densities := ds.Foundations.Densities
+	if len(densities) == 0 {
+		return
+	}
+	dv := densityVarName(prefix)
+	fmt.Fprintf(b, "\n/* Density */\n:root {\n  %s: 1;\n}\n", dv)
+	for _, d := range densities {
+		fmt.Fprintf(b, "\n[data-density=%q] {\n", d.ID)
+		fmt.Fprintf(b, "  %s: %v;\n", dv, d.Scale)
+		ids := make([]string, 0, len(d.SpacingOverrides))
+		for id := range d.SpacingOverrides {
+			ids = append(ids, id)
+		}
+		sort.Strings(ids)
+		for _, id := range ids {
+			fmt.Fprintf(b, "  %s: %s;\n", spacingVar(id), d.SpacingOverrides[id])
+		}
+		b.WriteString("}\n")
+	}
 }
