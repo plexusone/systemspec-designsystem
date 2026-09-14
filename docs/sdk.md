@@ -316,6 +316,7 @@ fmt.Println(prompt)
 ```go
 type DesignSystem struct {
     Meta          Meta
+    Modes         []string         // Declared discrete modes (e.g. "light", "dark", "high-contrast")
     Principles    []Principle
     Foundations   Foundations
     Components    []Component
@@ -327,6 +328,38 @@ type DesignSystem struct {
     ThemeBindings []ThemeBindings  // Application token mappings
 }
 ```
+
+### Foundations
+
+```go
+type Foundations struct {
+    Colors     []ColorToken
+    Spacing    *SpacingScale
+    Densities  []DensityToken  // Named density variants
+    // ...typography, elevation, motion, grid, breakpoints, borders, opacity, z-index
+}
+
+type ColorToken struct {
+    ID             string
+    Value          string
+    LightModeValue string            // sugar, folds into Modes
+    DarkModeValue  string            // sugar, folds into Modes
+    Modes          map[string]string // Generalized mode -> value map
+}
+
+// EffectiveModes folds LightModeValue/DarkModeValue into Modes,
+// with explicit Modes entries taking precedence.
+func (c ColorToken) EffectiveModes() map[string]string
+
+type DensityToken struct {
+    ID               string
+    Scale            float64           // Spacing scale multiplier (e.g. 0.75 for compact)
+    Description      string
+    SpacingOverrides map[string]string // Spacing token ID -> override value
+}
+```
+
+See [Foundations Specification](specification/foundations.md#modes) for the full modes/density model and how it flows into generated CSS.
 
 ### Component
 
@@ -359,13 +392,19 @@ type ThemingContract struct {
 }
 
 type ThemeToken struct {
-    ID           string  // Token identifier
-    CSSProperty  string  // Full CSS property name
-    Semantic     string  // Semantic category for auto-mapping
-    Description  string
-    DefaultLight string  // Light mode default
-    DefaultDark  string  // Dark mode default
+    ID               string            // Token identifier
+    CSSProperty      string            // Full CSS property name
+    Semantic         string            // Semantic category for auto-mapping
+    Description      string
+    DefaultLight     string            // Light mode default (sugar, folds into Defaults)
+    DefaultDark      string            // Dark mode default (sugar, folds into Defaults)
+    Defaults         map[string]string // Generalized mode -> default value map
+    DensitySensitive bool              // Whether this token varies by density
 }
+
+// EffectiveDefaults folds DefaultLight/DefaultDark into Defaults,
+// with explicit Defaults entries taking precedence.
+func (t ThemeToken) EffectiveDefaults() map[string]string
 ```
 
 ### ThemeBindings
@@ -374,7 +413,7 @@ type ThemeToken struct {
 type ThemeBindings struct {
     Component string          // Component ID to theme
     SpecURL   string          // Optional URL to fetch component spec
-    ThemeMode string          // "light", "dark", or empty for both
+    ThemeMode string          // Any mode declared in DesignSystem.Modes, or empty
     Strategy  string          // "explicit", "semantic", "inherit"
     Mappings  []TokenMapping
 }

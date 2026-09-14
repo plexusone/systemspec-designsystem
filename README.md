@@ -398,6 +398,27 @@ dss bind --output ./theme.css
 
 See [Theming Specification](docs/specification/theming.md) for details.
 
+## Modes and Density
+
+Beyond light/dark, a design system can declare an arbitrary set of discrete modes (`high-contrast`, brand themes, etc.) and give any color token a value per mode. The `lightModeValue`/`darkModeValue` fields still work — they fold into the generalized map as sugar:
+
+```json
+{
+  "modes": ["light", "dark", "high-contrast"],
+  "foundations": {
+    "colors": [
+      { "id": "surface", "value": "#fff", "modes": { "light": "#fff", "dark": "#111", "high-contrast": "#000" } }
+    ],
+    "densities": [
+      { "id": "comfortable", "scale": 1.0 },
+      { "id": "compact", "scale": 0.75, "spacingOverrides": { "4": "0.65rem" } }
+    ]
+  }
+}
+```
+
+`dss generate --css` emits `[data-mode="..."]` override blocks and a `--density` custom property (plus `[data-density="..."]` blocks) whenever a document declares modes or densities — no extra flags needed. The `mode-completeness` lint rule (`dss lint-spec`) checks that mode-aware tokens cover every declared mode. See [Foundations](docs/specification/foundations.md) and [Theming](docs/specification/theming.md) for the full model.
+
 ## Figma Integration
 
 > **Note:** Figma integration is for teams transitioning from traditional design workflows. For AI-native development, DSS specs are authored directly—Figma is not required.
@@ -526,6 +547,7 @@ systemspec-designsystem/
 - [x] Visual regression testing with w3pilot integration
 - [x] Evaluation system with rubric-based scoring
 - [x] HTML documentation generator with Material Web demos
+- [x] First-class discrete modes and density model
 - [ ] `dss init` scaffolding
 - [ ] CI/CD GitHub Actions integration
 - [ ] Color contrast validation

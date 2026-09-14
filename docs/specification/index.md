@@ -8,7 +8,7 @@ DSS defines **9 canonical layers** for complete design system specification. Eac
 |-------|---------|---------|
 | [Meta](meta.md) | `meta.json` | System name, version, maintainers |
 | [Principles](principles.md) | `principles.json` | Design philosophy and guidelines |
-| [Foundations](foundations.md) | `foundations/*.json` | Design tokens (colors, typography, spacing) |
+| [Foundations](foundations.md) | `foundations/*.json` | Design tokens (colors, typography, spacing, density) |
 | [Components](components.md) | `components/*.json` | UI elements with variants, states, props |
 | [Patterns](patterns.md) | `patterns/*.json` | Multi-component solutions |
 | Templates | `templates/*.json` | Page-level layouts |
@@ -24,15 +24,17 @@ A complete design system spec typically follows this structure:
 ```
 my-design-system/
 ├── meta.json                 # Required: name, version
+├── modes.json                # Declared discrete modes (e.g. ["light", "dark"])
 ├── principles.json           # Design philosophy
 ├── accessibility.json        # WCAG requirements
 ├── governance.json           # Policies
 ├── content.json              # Voice & tone
 ├── themeBindings.json        # Token mappings to external components
 ├── foundations/
-│   ├── colors.json           # Color tokens
+│   ├── colors.json           # Color tokens (may include per-mode values)
 │   ├── typography.json       # Font definitions
 │   ├── spacing.json          # Spacing scale
+│   ├── densities.json        # Density variants (scale + spacing overrides)
 │   └── border-radius.json    # Border radius values
 ├── components/
 │   ├── button.json           # Button component spec (includes themingContract)

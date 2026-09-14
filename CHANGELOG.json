@@ -8,31 +8,63 @@
     "plexusone"
   ],
   "unreleased": {
-    "highlights": [
-      {
-        "description": "First-class discrete modes and density (issue #9): documents declare their modes, color tokens carry generalized mode→value maps (light/dark fields remain as sugar), and foundations gain density variants with spacing multipliers and overrides"
-      }
-    ],
-    "added": [
-      {
-        "description": "DesignSystem.modes declaration and ColorToken.modes / ThemeToken.defaults mode→value maps with EffectiveModes/EffectiveDefaults sugar folding; Foundations.densities with scale and per-token spacingOverrides; ThemeToken.densitySensitive; themeMode accepts any declared mode"
-      },
-      {
-        "description": "mode-completeness spec lint rule: mode-aware tokens must cover every declared mode, undeclared mode keys are flagged, and documents using modes without declaring them get an advisory"
-      },
-      {
-        "description": "CSS generation emits [data-mode] override blocks and a --density scale property with per-density [data-density] blocks across tailwind4 and css-vars; scss gains per-mode and density variables; mkdocs-material picks dark-mode token values where defined"
-      },
-      {
-        "description": "Theme bindings resolve per-mode values across explicit, semantic, and inherit strategies; W3C export carries the full modes map and a density group; LLM context gains a Modes column and Densities section"
-      }
-    ],
+    "highlights": [],
+    "added": [],
     "changed": [],
     "fixed": [],
     "documentation": [],
     "build": []
   },
   "releases": [
+    {
+      "version": "v0.7.0",
+      "date": "2026-09-14",
+      "highlights": [
+        {
+          "description": "First-class discrete modes and density (issue #9): documents declare their modes, color tokens carry generalized mode→value maps (light/dark fields remain as sugar), and foundations gain density variants with spacing multipliers and overrides"
+        }
+      ],
+      "added": [
+        {
+          "description": "DesignSystem.modes declaration and ColorToken.modes / ThemeToken.defaults mode→value maps with EffectiveModes/EffectiveDefaults sugar folding; Foundations.densities with scale and per-token spacingOverrides; ThemeToken.densitySensitive; themeMode accepts any declared mode",
+          "commit": "f72c690"
+        },
+        {
+          "description": "mode-completeness spec lint rule: mode-aware tokens must cover every declared mode, undeclared mode keys are flagged, and documents using modes without declaring them get an advisory",
+          "commit": "7a0dd4f"
+        },
+        {
+          "description": "CSS generation emits [data-mode] override blocks and a --density scale property with per-density [data-density] blocks across tailwind4 and css-vars; scss gains per-mode and density variables; mkdocs-material picks dark-mode token values where defined",
+          "commit": "4b62848"
+        },
+        {
+          "description": "Theme bindings resolve per-mode values across explicit, semantic, and inherit strategies; W3C export carries the full modes map and a density group; LLM context gains a Modes column and Densities section",
+          "commit": "ca62f82"
+        }
+      ],
+      "changed": [
+        {
+          "description": "Synced the hand-maintained TypeScript type mirror (ui/src/types.ts) with the new modes and density fields",
+          "commit": "1df32be"
+        }
+      ],
+      "documentation": [
+        {
+          "description": "Documented modes and density in the Foundations and Theming specification pages; themed-app example now declares modes and density variants",
+          "commit": "b78f1be"
+        }
+      ],
+      "build": [
+        {
+          "description": "Regenerated JSON schemas for the new modes and density fields",
+          "commit": "79a0a39"
+        },
+        {
+          "description": "Updated go.mod dependencies, bumping modelcontextprotocol/go-sdk to v1.8.0",
+          "commit": "4ae1249"
+        }
+      ]
+    },
     {
       "version": "v0.6.0",
       "date": "2026-09-14",

@@ -142,6 +142,8 @@ See [NPM Package Spec](specs/ROADMAP.md) for full `package.json` structure.
 | `css-vars` | Standard CSS `:root` with custom properties |
 | `scss` | SCSS variables (`$color-primary`, etc.) |
 
+If the spec declares `modes` or `foundations.densities`, every format above also emits mode overrides (`[data-mode="dark"] { ... }`) and a `--density` custom property with per-density `[data-density="..."]` blocks — no extra flags required. Specs without modes or densities are unaffected. See [Foundations: Modes](specification/foundations.md#modes) and [Densities](specification/foundations.md#densities).
+
 ---
 
 ### dss validate
@@ -262,6 +264,7 @@ dss lint-spec rules
 | `accessibility-defined` | Warning | Design system should define accessibility |
 | `theming-contract-valid` | Error/Warning | Theming contracts must be properly configured |
 | `validators-configured` | Warning | External validators should be configured |
+| `mode-completeness` | Warning/Info | Mode-aware color tokens should cover every declared mode; mode keys should be declared in `modes` |
 | `validator-tool-required` | Error | Validators must specify a tool name |
 | `validator-type-valid` | Error | Validator type must be valid |
 

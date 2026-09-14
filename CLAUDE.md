@@ -124,6 +124,24 @@ type BadEvent struct {
 }
 ```
 
+### Generalizing a Narrow Field Without Breaking Compatibility
+
+When a field only covers two cases (e.g. `lightModeValue`/`darkModeValue`) and needs to grow into an open set (arbitrary modes), don't replace it — add a generalized `map[string]string` field alongside it and fold the old fields in as "sugar" via an `Effective*()` accessor:
+
+```go
+type ColorToken struct {
+    LightModeValue string            `json:"lightModeValue,omitempty"` // sugar, kept for compatibility
+    DarkModeValue  string            `json:"darkModeValue,omitempty"`  // sugar, kept for compatibility
+    Modes          map[string]string `json:"modes,omitempty"`          // generalized form
+}
+
+// EffectiveModes folds the sugar fields into the generalized map;
+// explicit Modes entries take precedence.
+func (c ColorToken) EffectiveModes() map[string]string { /* ... */ }
+```
+
+All consumers (CSS generation, bindings, W3C export) read through the `Effective*()` method, never the raw fields. This keeps old spec files valid forever and gives new documents an open-ended set without a breaking change. See `ColorToken.EffectiveModes()` / `ThemeToken.EffectiveDefaults()` in `sdk/go/foundations.go` and `sdk/go/theming.go`.
+
 ## CLI Commands
 
 ```bash
