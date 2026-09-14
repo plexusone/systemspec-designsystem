@@ -15,6 +15,27 @@
   },
   "releases": [
     {
+      "version": "v0.6.0",
+      "date": "2026-09-14",
+      "highlights": [
+        { "description": "Module renamed to github.com/plexusone/systemspec-designsystem as part of the PlexusOne systemspec-{domain} family consolidation (breaking)" },
+        { "description": "New `ariaPattern` field on `ComponentA11y` for referencing WAI-ARIA Authoring Practices patterns" }
+      ],
+      "added": [
+        { "description": "`ariaPattern` field on `ComponentA11y`, referencing the WAI-ARIA Authoring Practices pattern name (e.g. dialog, tabs, combobox) so components can point at the canonical APG pattern docs instead of just an ARIA role", "commit": "7e6eb85" }
+      ],
+      "changed": [
+        { "description": "Renamed Go module from github.com/plexusone/design-system-spec to github.com/plexusone/systemspec-designsystem; updated all import paths, the UI package name, and schema $id references", "commit": "9c9e243" },
+        { "description": "Updated README, CLAUDE.md, PRD, TASKS, MkDocs site, and guides for the systemspec-designsystem name and the \"SystemSpec: Design System\" display name", "commit": "cc1539e" }
+      ],
+      "documentation": [
+        { "description": "Added spec and review for a `dss generate css` command proposal (CSS/Tailwind output from design-system.json)", "commit": "ab57e88" }
+      ],
+      "build": [
+        { "description": "Updated go.mod dependencies, including structured-evaluation and modelcontextprotocol/go-sdk", "commit": "b6c59c8" }
+      ]
+    },
+    {
       "version": "v0.5.0",
       "date": "2026-07-13",
       "highlights": [
