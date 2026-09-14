@@ -186,7 +186,7 @@ func buildMappings(ds *DesignSystem, contract *ThemingContract, binding *ThemeBi
 	}
 
 	// Build semantic token lookup from design system
-	semanticTokens := buildSemanticLookup(ds)
+	semanticTokens := buildSemanticLookup(ds, binding.ThemeMode)
 
 	var results []TokenBindingResult
 
@@ -196,7 +196,7 @@ func buildMappings(ds *DesignSystem, contract *ThemingContract, binding *ThemeBi
 
 		// Try explicit mapping first
 		if m, ok := explicitMappings[token.ID]; ok {
-			result.Value = resolveTokenValue(ds, m.From)
+			result.Value = resolveTokenValue(ds, m.From, binding.ThemeMode)
 			result.Transform = m.Transform
 			result.Source = "explicit"
 			results = append(results, result)
@@ -240,7 +240,7 @@ func buildMappings(ds *DesignSystem, contract *ThemingContract, binding *ThemeBi
 }
 
 // buildSemanticLookup builds a map of semantic names to token values.
-func buildSemanticLookup(ds *DesignSystem) map[string]string {
+func buildSemanticLookup(ds *DesignSystem, themeMode string) map[string]string {
 	lookup := make(map[string]string)
 
 	// Map colors by common semantic names
@@ -249,41 +249,41 @@ func buildSemanticLookup(ds *DesignSystem) map[string]string {
 		// Map common patterns
 		switch {
 		case strings.Contains(name, "primary"):
-			lookup["primary"] = color.Value
+			lookup["primary"] = modeValue(color, themeMode)
 		case strings.Contains(name, "secondary"):
-			lookup["secondary"] = color.Value
+			lookup["secondary"] = modeValue(color, themeMode)
 		case strings.Contains(name, "accent"):
-			lookup["accent"] = color.Value
+			lookup["accent"] = modeValue(color, themeMode)
 		case strings.Contains(name, "danger") || strings.Contains(name, "error"):
-			lookup["danger"] = color.Value
+			lookup["danger"] = modeValue(color, themeMode)
 		case strings.Contains(name, "warning"):
-			lookup["warning"] = color.Value
+			lookup["warning"] = modeValue(color, themeMode)
 		case strings.Contains(name, "success"):
-			lookup["success"] = color.Value
+			lookup["success"] = modeValue(color, themeMode)
 		case strings.Contains(name, "info"):
-			lookup["info"] = color.Value
+			lookup["info"] = modeValue(color, themeMode)
 		case strings.Contains(name, "neutral") || strings.Contains(name, "gray"):
 			if _, exists := lookup["neutral"]; !exists {
-				lookup["neutral"] = color.Value
+				lookup["neutral"] = modeValue(color, themeMode)
 			}
 		case strings.Contains(name, "surface") || strings.Contains(name, "background"):
 			if _, exists := lookup["surface"]; !exists {
-				lookup["surface"] = color.Value
+				lookup["surface"] = modeValue(color, themeMode)
 			}
 		case strings.Contains(name, "text"):
 			if strings.Contains(name, "muted") {
-				lookup["text-muted"] = color.Value
+				lookup["text-muted"] = modeValue(color, themeMode)
 			} else if strings.Contains(name, "inverse") {
-				lookup["text-inverse"] = color.Value
+				lookup["text-inverse"] = modeValue(color, themeMode)
 			} else if _, exists := lookup["text"]; !exists {
-				lookup["text"] = color.Value
+				lookup["text"] = modeValue(color, themeMode)
 			}
 		case strings.Contains(name, "border"):
-			lookup["border"] = color.Value
+			lookup["border"] = modeValue(color, themeMode)
 		case strings.Contains(name, "focus"):
-			lookup["focus"] = color.Value
+			lookup["focus"] = modeValue(color, themeMode)
 		case strings.Contains(name, "disabled"):
-			lookup["disabled"] = color.Value
+			lookup["disabled"] = modeValue(color, themeMode)
 		}
 	}
 
@@ -291,7 +291,7 @@ func buildSemanticLookup(ds *DesignSystem) map[string]string {
 }
 
 // resolveTokenValue resolves a token reference to its value.
-func resolveTokenValue(ds *DesignSystem, tokenRef string) string {
+func resolveTokenValue(ds *DesignSystem, tokenRef string, themeMode string) string {
 	// Support dot notation (colors.primary-500) or direct ID (primary-500)
 	parts := strings.SplitN(tokenRef, ".", 2)
 	var tokenID string
@@ -301,10 +301,10 @@ func resolveTokenValue(ds *DesignSystem, tokenRef string) string {
 		tokenID = tokenRef
 	}
 
-	// Search colors
+	// Search colors (mode-aware: prefer the token's value for the active mode)
 	for _, color := range ds.Foundations.Colors {
 		if color.ID == tokenID || color.ID == tokenRef {
-			return color.Value
+			return modeValue(color, themeMode)
 		}
 	}
 
@@ -314,18 +314,15 @@ func resolveTokenValue(ds *DesignSystem, tokenRef string) string {
 
 // getDefault returns the appropriate default value for a token.
 func getDefault(token ThemeToken, themeMode string) string {
-	switch themeMode {
-	case "light":
-		return token.DefaultLight
-	case "dark":
-		return token.DefaultDark
-	default:
-		// Prefer dark for PlexusOne consistency
-		if token.DefaultDark != "" {
-			return token.DefaultDark
-		}
-		return token.DefaultLight
+	defaults := token.EffectiveDefaults()
+	if themeMode != "" {
+		return defaults[themeMode]
 	}
+	// Prefer dark for PlexusOne consistency
+	if v := defaults["dark"]; v != "" {
+		return v
+	}
+	return defaults["light"]
 }
 
 // generateCSS generates CSS output.

@@ -335,9 +335,48 @@ func TestResolveTokenValue(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		got := resolveTokenValue(ds, tt.tokenRef)
+		got := resolveTokenValue(ds, tt.tokenRef, "")
 		if got != tt.want {
 			t.Errorf("resolveTokenValue(%q) = %q, want %q", tt.tokenRef, got, tt.want)
 		}
+	}
+}
+
+func TestResolveTokenValueModeAware(t *testing.T) {
+	ds := &DesignSystem{
+		Foundations: Foundations{
+			Colors: []ColorToken{
+				{ID: "primary-500", Value: "#0af", Modes: map[string]string{"dark": "#068", "high-contrast": "#000"}},
+			},
+		},
+	}
+	if got := resolveTokenValue(ds, "primary-500", ""); got != "#0af" {
+		t.Errorf("no mode = %q, want base value", got)
+	}
+	if got := resolveTokenValue(ds, "colors.primary-500", "dark"); got != "#068" {
+		t.Errorf("dark = %q", got)
+	}
+	if got := resolveTokenValue(ds, "primary-500", "high-contrast"); got != "#000" {
+		t.Errorf("high-contrast = %q", got)
+	}
+	if got := resolveTokenValue(ds, "primary-500", "sepia"); got != "#0af" {
+		t.Errorf("unknown mode should fall back to base, got %q", got)
+	}
+}
+
+func TestGetDefaultGeneralizedModes(t *testing.T) {
+	token := ThemeToken{
+		ID: "bg", CSSProperty: "--x-bg",
+		DefaultLight: "#fff", DefaultDark: "#111",
+		Defaults: map[string]string{"high-contrast": "#000"},
+	}
+	if got := getDefault(token, "high-contrast"); got != "#000" {
+		t.Errorf("high-contrast default = %q", got)
+	}
+	if got := getDefault(token, "light"); got != "#fff" {
+		t.Errorf("light default = %q", got)
+	}
+	if got := getDefault(token, ""); got != "#111" {
+		t.Errorf("empty mode should prefer dark, got %q", got)
 	}
 }

@@ -28,15 +28,16 @@ func DefaultW3CTokensOptions() W3CTokensOptions {
 
 // W3CTokenFile represents the root of a W3C Design Tokens file.
 type W3CTokenFile struct {
-	Schema string                 `json:"$schema,omitempty"`
-	Color  map[string]*W3CToken   `json:"color,omitempty"`
-	Space  map[string]*W3CToken   `json:"space,omitempty"`
-	Size   map[string]*W3CToken   `json:"size,omitempty"`
-	Radius map[string]*W3CToken   `json:"radius,omitempty"`
-	Shadow map[string]*W3CToken   `json:"shadow,omitempty"`
-	Font   map[string]interface{} `json:"font,omitempty"`
-	Motion map[string]interface{} `json:"motion,omitempty"`
-	ZIndex map[string]*W3CToken   `json:"zIndex,omitempty"`
+	Schema  string                 `json:"$schema,omitempty"`
+	Color   map[string]*W3CToken   `json:"color,omitempty"`
+	Space   map[string]*W3CToken   `json:"space,omitempty"`
+	Size    map[string]*W3CToken   `json:"size,omitempty"`
+	Radius  map[string]*W3CToken   `json:"radius,omitempty"`
+	Shadow  map[string]*W3CToken   `json:"shadow,omitempty"`
+	Font    map[string]interface{} `json:"font,omitempty"`
+	Motion  map[string]interface{} `json:"motion,omitempty"`
+	ZIndex  map[string]*W3CToken   `json:"zIndex,omitempty"`
+	Density map[string]*W3CToken   `json:"density,omitempty"`
 }
 
 // W3CToken represents a single W3C Design Token.
@@ -86,11 +87,29 @@ func (ds *DesignSystem) GenerateW3CTokens(opts W3CTokensOptions) (string, error)
 						"category": "color",
 					},
 				}
-				if c.DarkModeValue != "" {
-					token.Extensions["com.plexusone.dss"].(map[string]interface{})["darkModeValue"] = c.DarkModeValue
+				if modes := c.EffectiveModes(); len(modes) > 0 {
+					token.Extensions["com.plexusone.dss"].(map[string]interface{})["modes"] = modes
 				}
 			}
 			tokens.Color[normalizeTokenName(c.ID)] = token
+		}
+	}
+
+	if len(f.Densities) > 0 {
+		tokens.Density = make(map[string]*W3CToken)
+		for _, d := range f.Densities {
+			token := &W3CToken{Value: d.Scale, Type: "number"}
+			if opts.IncludeDescriptions && d.Description != "" {
+				token.Description = d.Description
+			}
+			if opts.IncludeExtensions {
+				ext := map[string]interface{}{"id": d.ID, "category": "density"}
+				if len(d.SpacingOverrides) > 0 {
+					ext["spacingOverrides"] = d.SpacingOverrides
+				}
+				token.Extensions = map[string]interface{}{"com.plexusone.dss": ext}
+			}
+			tokens.Density[normalizeTokenName(d.ID)] = token
 		}
 	}
 

@@ -2,6 +2,7 @@ package dss
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -114,14 +115,39 @@ func writeFoundationsSection(b *strings.Builder, f Foundations) {
 	// Colors with semantic meaning
 	if len(f.Colors) > 0 {
 		b.WriteString("### Colors\n\n")
-		b.WriteString("| Token | Value | Usage |\n")
-		b.WriteString("|-------|-------|-------|\n")
+		b.WriteString("| Token | Value | Modes | Usage |\n")
+		b.WriteString("|-------|-------|-------|-------|\n")
 		for _, c := range f.Colors {
 			usage := c.Usage
 			if usage == "" {
 				usage = c.Semantic
 			}
-			b.WriteString(fmt.Sprintf("| `%s` | `%s` | %s |\n", c.ID, c.Value, usage))
+			modes := c.EffectiveModes()
+			modeCol := "—"
+			if len(modes) > 0 {
+				keys := make([]string, 0, len(modes))
+				for m := range modes {
+					keys = append(keys, m)
+				}
+				sort.Strings(keys)
+				parts := make([]string, 0, len(keys))
+				for _, m := range keys {
+					parts = append(parts, fmt.Sprintf("%s: `%s`", m, modes[m]))
+				}
+				modeCol = strings.Join(parts, ", ")
+			}
+			b.WriteString(fmt.Sprintf("| `%s` | `%s` | %s | %s |\n", c.ID, c.Value, modeCol, usage))
+		}
+		b.WriteString("\n")
+	}
+
+	// Densities
+	if len(f.Densities) > 0 {
+		b.WriteString("### Densities\n\n")
+		b.WriteString("| Density | Scale | Description |\n")
+		b.WriteString("|---------|-------|-------------|\n")
+		for _, d := range f.Densities {
+			b.WriteString(fmt.Sprintf("| `%s` | %v | %s |\n", d.ID, d.Scale, d.Description))
 		}
 		b.WriteString("\n")
 	}
