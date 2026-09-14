@@ -9,7 +9,7 @@ import (
 	"fmt"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
 )
 
 // Runtime manages MCP server operations and skill registration.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/plexusone/design-system-spec/sdk/go/design-system",
+  "$id": "https://github.com/plexusone/systemspec-designsystem/sdk/go/design-system",
   "$ref": "#/$defs/DesignSystem",
   "$defs": {
     "Accessibility": {

@@ -61,11 +61,11 @@ func (s *Service) Evaluate(ctx context.Context, opts *EvalOptions) (*rubric.Rubr
 	// Create rubric with DSS review type
 	docName := s.ds.Meta.Name
 	if docName == "" {
-		docName = "design-system-spec"
+		docName = "systemspec-designsystem"
 	}
 	r := rubric.NewRubric(ReviewTypeDSS, docName)
 	r.Metadata.DocumentVersion = s.ds.Meta.Version
-	r.Metadata.GeneratedBy = "design-system-spec/eval"
+	r.Metadata.GeneratedBy = "systemspec-designsystem/eval"
 
 	// Evaluate each category
 	for _, catName := range opts.Categories {

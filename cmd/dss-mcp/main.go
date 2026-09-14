@@ -12,11 +12,11 @@ import (
 	"syscall"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/plexusone/design-system-spec/internal/omniskill/mcp/client"
-	"github.com/plexusone/design-system-spec/internal/omniskill/mcp/server"
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
-	dss "github.com/plexusone/design-system-spec/sdk/go"
-	"github.com/plexusone/design-system-spec/skills/designsystem"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/mcp/client"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/mcp/server"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
+	dss "github.com/plexusone/systemspec-designsystem/sdk/go"
+	"github.com/plexusone/systemspec-designsystem/skills/designsystem"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +27,7 @@ var (
 
 var rootCmd = &cobra.Command{
 	Use:   "dss-mcp",
-	Short: "Design System Spec MCP Server",
+	Short: "systemspec-designsystem MCP Server",
 	Long: `MCP server for design system specification operations.
 
 Exposes tools for:

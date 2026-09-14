@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
 )
 
 func (s *Skill) getComponentTool() skill.Tool {

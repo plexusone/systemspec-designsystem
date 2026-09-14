@@ -1,4 +1,4 @@
-module github.com/plexusone/design-system-spec
+module github.com/plexusone/systemspec-designsystem
 
 go 1.26.0
 

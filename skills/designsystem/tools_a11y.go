@@ -3,7 +3,7 @@ package designsystem
 import (
 	"context"
 
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
 )
 
 // getAccessibilityRequirementsTool returns the tool for getting accessibility requirements.

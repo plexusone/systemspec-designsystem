@@ -1,7 +1,7 @@
 {
   "name": "@plexusone/dss-ui",
   "version": "0.1.0",
-  "description": "Design System Spec Web UI - Visual viewer and editor for DSS JSON specs",
+  "description": "systemspec-designsystem Web UI - Visual viewer and editor for DSS JSON specs",
   "type": "module",
   "main": "dist/dss-ui.js",
   "module": "dist/dss-ui.js",

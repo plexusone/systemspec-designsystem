@@ -1,4 +1,4 @@
-// DSS UI - Design System Spec Viewer & Editor
+// DSS UI - systemspec-designsystem Viewer & Editor
 // A Lit Web Component library for visualizing and editing design system specifications
 
 // Main component

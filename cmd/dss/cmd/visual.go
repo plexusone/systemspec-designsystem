@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/plexusone/design-system-spec/sdk/go/visual"
+	"github.com/plexusone/systemspec-designsystem/sdk/go/visual"
 	"github.com/spf13/cobra"
 )
 

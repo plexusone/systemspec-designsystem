@@ -10,7 +10,7 @@ import (
 	"os/exec"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
 )
 
 // Client manages connections to remote MCP servers.

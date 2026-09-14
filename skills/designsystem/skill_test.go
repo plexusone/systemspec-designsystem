@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	dss "github.com/plexusone/design-system-spec/sdk/go"
+	dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 func TestSkillMetadata(t *testing.T) {

@@ -17,7 +17,7 @@ var (
 
 var rootCmd = &cobra.Command{
 	Use:   "dss",
-	Short: "Design System Spec CLI",
+	Short: "systemspec-designsystem CLI",
 	Long: `dss is a CLI tool for working with Design System Specifications.
 
 It can generate code artifacts (CSS, TypeScript types, LLM prompts) from

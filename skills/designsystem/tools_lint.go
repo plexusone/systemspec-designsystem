@@ -3,8 +3,8 @@ package designsystem
 import (
 	"context"
 
-	"github.com/plexusone/design-system-spec/internal/omniskill/skill"
-	dss "github.com/plexusone/design-system-spec/sdk/go"
+	"github.com/plexusone/systemspec-designsystem/internal/omniskill/skill"
+	dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 func (s *Skill) lintSpecTool() skill.Tool {

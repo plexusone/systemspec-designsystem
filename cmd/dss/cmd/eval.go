@@ -7,8 +7,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	dss "github.com/plexusone/design-system-spec/sdk/go"
 	"github.com/plexusone/structured-evaluation/rubric"
+	dss "github.com/plexusone/systemspec-designsystem/sdk/go"
 )
 
 var (
