@@ -67,6 +67,12 @@
         },
         "darkModeValue": {
           "type": "string"
+        },
+        "modes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "additionalProperties": false,
@@ -89,6 +95,27 @@
             "AA",
             "AAA"
           ]
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DensityToken": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scale": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "spacingOverrides": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "additionalProperties": false,
@@ -251,6 +278,12 @@
         "zIndex": {
           "items": {
             "$ref": "#/$defs/ZIndexToken"
+          },
+          "type": "array"
+        },
+        "densities": {
+          "items": {
+            "$ref": "#/$defs/DensityToken"
           },
           "type": "array"
         }

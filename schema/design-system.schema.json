@@ -3,6 +3,33 @@
   "$id": "https://github.com/plexusone/systemspec-designsystem/sdk/go/design-system",
   "$ref": "#/$defs/DesignSystem",
   "$defs": {
+    "APIStyleValidator": {
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "ruleset": {
+          "type": "string"
+        },
+        "rules": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
     "Accessibility": {
       "properties": {
         "wcagLevel": {
@@ -69,6 +96,36 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "AccessibilityValidator": {
+      "properties": {
+        "tool": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "standards": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "checks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "required": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false,
@@ -156,6 +213,12 @@
         },
         "darkModeValue": {
           "type": "string"
+        },
+        "modes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "additionalProperties": false,
@@ -243,6 +306,9 @@
     },
     "ComponentA11y": {
       "properties": {
+        "ariaPattern": {
+          "type": "string"
+        },
         "role": {
           "type": "string"
         },
@@ -433,6 +499,36 @@
       "additionalProperties": false,
       "type": "object"
     },
+    "CustomValidator": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "config": {
+          "type": "object"
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
     "DecisionProcess": {
       "properties": {
         "description": {
@@ -449,6 +545,27 @@
         },
         "decisionRecordLocation": {
           "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "DensityToken": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scale": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "spacingOverrides": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "additionalProperties": false,
@@ -520,6 +637,12 @@
         "foundations": {
           "$ref": "#/$defs/Foundations"
         },
+        "modes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "components": {
           "items": {
             "$ref": "#/$defs/Component"
@@ -552,6 +675,9 @@
             "$ref": "#/$defs/ThemeBindings"
           },
           "type": "array"
+        },
+        "validators": {
+          "$ref": "#/$defs/Validators"
         }
       },
       "additionalProperties": false,
@@ -729,6 +855,12 @@
         "zIndex": {
           "items": {
             "$ref": "#/$defs/ZIndexToken"
+          },
+          "type": "array"
+        },
+        "densities": {
+          "items": {
+            "$ref": "#/$defs/DensityToken"
           },
           "type": "array"
         }
@@ -1679,11 +1811,7 @@
           "format": "uri"
         },
         "themeMode": {
-          "type": "string",
-          "enum": [
-            "light",
-            "dark"
-          ]
+          "type": "string"
         },
         "strategy": {
           "type": "string",
@@ -1722,6 +1850,15 @@
         },
         "defaultDark": {
           "type": "string"
+        },
+        "defaults": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "densitySensitive": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false,
@@ -1873,6 +2010,24 @@
         "typeScale": {
           "items": {
             "$ref": "#/$defs/TypeStyle"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "Validators": {
+      "properties": {
+        "accessibility": {
+          "$ref": "#/$defs/AccessibilityValidator"
+        },
+        "apiStyle": {
+          "$ref": "#/$defs/APIStyleValidator"
+        },
+        "custom": {
+          "items": {
+            "$ref": "#/$defs/CustomValidator"
           },
           "type": "array"
         }

@@ -86,8 +86,7 @@
     "ComponentA11y": {
       "properties": {
         "ariaPattern": {
-          "type": "string",
-          "description": "WAI-ARIA Authoring Practices pattern name. References https://www.w3.org/WAI/ARIA/apg/patterns/{pattern}/. Examples: dialog, tabs, combobox, menu-button, accordion, disclosure, listbox, tree-view, carousel, feed."
+          "type": "string"
         },
         "role": {
           "type": "string"
@@ -352,6 +351,15 @@
         },
         "defaultDark": {
           "type": "string"
+        },
+        "defaults": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "densitySensitive": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false,
